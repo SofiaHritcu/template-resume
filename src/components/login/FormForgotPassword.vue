@@ -24,7 +24,6 @@
 
 <script>
 import firebase from "firebase";
-import db from "@/firebase/firebaseInit";
 export default {
   data() {
     return {
@@ -46,25 +45,19 @@ export default {
     };
   },
   methods: {
+    loginRedirect() {
+      this.$router.push('login');
+    },
+
     submitEmail() {
       if (this.$refs.forgetPasswordForm.validate()) {
-        console.log("submiting email" + " " + this.email);
-        // firebase
-        //   .auth()
-        //   .createUserWithEmailAndPassword(this.email, this.password)
-        //   .then((data) => {
-        //     data.user.sendEmailVerification();
-        //     this.userID = data.user.uid;
-        //     db.collection("users")
-        //       .doc(this.userID)
-        //       .set({
-        //         firstName: this.firstName,
-        //         lastName: this.lastName,
-        //         email: this.email,
-        //       })
-        //       .then((this.snackbarEmailSent = true));
-        //   });
-        this.snackbarEmailSent = true;
+        firebase.auth().sendPasswordResetEmail(this.email)
+        .then(() => {
+            this.snackbarEmailSent = true
+            setTimeout(() => {
+              this.loginRedirect();
+            }, 4000);
+        })
       }
     },
   },
