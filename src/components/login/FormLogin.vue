@@ -1,5 +1,9 @@
 <template>
     <v-form ref="userLoginForm">
+         <v-snackbar v-model="snackbarEmailNotVerified" :timeout="4000" top color="red">
+            <span>Please verify your e-mail address!</span>
+            <v-btn color="white" text @click="snackbarEmailNotVerified = false">Close</v-btn>
+        </v-snackbar>
         <v-text-field 
                 v-model="email" 
                 label="email" 
@@ -41,6 +45,9 @@ export default {
             email: '',
             password: '',
 
+            // snackbars
+            snackbarEmailNotVerified: false,
+
             // data used in ui actions
             passwordShowing: true,
 
@@ -63,7 +70,7 @@ export default {
                         this.$router.push('/')
                     }
                     else {
-                        console.log('email not verified')
+                        this.snackbarEmailNotVerified = true
                     }
                 })
             }
