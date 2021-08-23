@@ -66,6 +66,7 @@
 </template>
 
 <script>
+import firebase from 'firebase'
 export default {
     data() {
         return {
@@ -100,9 +101,11 @@ export default {
     methods: {
         submitSignUpForm() {
             if(this.$refs.userSignUpForm.validate()) {
-                console.log('submiting sign up user'+' '+this.firstName+' '+this.lastName+' '+this.email+' '+this.password);
-                this.$refs.userSignUpForm.reset();
-                this.snackbarUserAdded = true;
+                console.log('submiting sign up user' + ' '
+                + this.firstName + ' ' + this.lastName+' ' 
+                + this.email + ' ' + this.password);
+                firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
+                    .then(this.snackbarUserAdded = true)
             }
         }
     }
