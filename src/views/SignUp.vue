@@ -14,7 +14,6 @@
             </v-row>
         </v-container>
     </div>
-
 </template>
 
 <script>

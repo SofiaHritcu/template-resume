@@ -9,12 +9,18 @@
             </v-row>
             <v-row no-gutters justify="center" align="center"> 
                 <v-col cols="5" class="text-center mx-5" justify="center">
+<<<<<<< HEAD
+                    <form-login class="mt-4 mb-10"></form-login>
+                    <v-row class="text-center mt-5" justify="center">
+                        <p class="text-overline font-weight-light">You don't have an account yet ?</p>
+=======
                     <form-login class="my-4"></form-login>
                      <v-row class="text-center my-4" justify="center">
                           <p class="text-overline font-weight-light">You don't have an account yet ???</p>
+>>>>>>> caf64408619555c277681fa3f6f63368375bc925
                     </v-row>
                     <v-btn
-                        class="ma-2"
+                        class="mt-2 ma-5"
                         tile
                         color="#d6e0f5"
                         @click="signUpRedirect"
@@ -26,6 +32,21 @@
                         <router-view to="/signup">
                             Sign Up
                         </router-view>
+                    </v-btn>
+                    <v-row class="text-center mt-5" justify="center">
+                        <p class="text-overline font-weight-light">FORGOT YOUR PASSWORD ?!</p>
+                    </v-row>
+                    <v-btn
+                        class="ma-2"
+                        tile
+                        color="#d6e0f5"
+                        @click="forgotpasswordRedirect"
+                    >
+                        <v-icon left color="white">
+                            mdi-lock-open-alert-outline
+                        </v-icon>
+                        Find my account
+                        <router-view to="/forgotpassword"></router-view>
                     </v-btn>
                 </v-col>
                 <!-- <v-divider vertical class="divider ml-1"></v-divider> -->
@@ -80,6 +101,9 @@ export default {
     methods: {
         signUpRedirect(){
             this.$router.push('signup'); 
+        },
+        forgotpasswordRedirect() {
+            this.$router.push('forgotpassword'); 
         }
     },
     computed: {
