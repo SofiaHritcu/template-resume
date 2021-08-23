@@ -1,6 +1,6 @@
 <template>
   <v-form ref="forgetPasswordForm" class="forgetPassword">
-    <v-snackbar v-model="snackbarEmailSent" :timeout="4000" top color="#85a3e0">
+    <v-snackbar v-model="snackbarEmailSent" :timeout="3000" top color="#85a3e0">
       <span>Check your e-mail ! </span>
       <v-btn color="white" text @click="snackbarEmailSent = false">Close</v-btn>
     </v-snackbar>
@@ -56,7 +56,7 @@ export default {
             this.snackbarEmailSent = true
             setTimeout(() => {
               this.loginRedirect();
-            }, 4000);
+            }, 3000);
         })
       }
     },
