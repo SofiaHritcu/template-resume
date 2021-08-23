@@ -8,6 +8,10 @@
             <span>The email you entered isn't connected to an account.</span>
             <v-btn color="white" text @click="snackbarUserNotFound = false">Close</v-btn>
         </v-snackbar>
+        <v-snackbar v-model="snackbarWrongPassword" :timeout="4000" top color="red">
+            <span>The password you’ve entered is incorrect.</span>
+            <v-btn color="white" text @click="snackbarWrongPassword = false">Close</v-btn>
+        </v-snackbar>
         <v-text-field 
                 v-model="email" 
                 label="email" 
@@ -52,6 +56,7 @@ export default {
             // snackbars
             snackbarEmailNotVerified: false,
             snackbarUserNotFound: false,
+            snackbarWrongPassword: false,
 
             // data used in ui actions
             passwordShowing: true,
@@ -81,6 +86,9 @@ export default {
                 .catch(t => {
                     if(t.code == 'auth/user-not-found'){
                         this.snackbarUserNotFound = true
+                    }
+                    else if(t.code == 'auth/wrong-password'){
+                        this.snackbarWrongPassword = true
                     }
                 })
             }
