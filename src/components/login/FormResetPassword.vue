@@ -4,6 +4,14 @@
       <span>Now you have a new password ! </span>
       <v-btn color="white" text @click="snackbarPasswordReset = false">Close</v-btn>
     </v-snackbar>
+    <v-snackbar v-model="snackbarPasswordResetUnknownError" :timeout="3000" top color="red">
+      <span>Unknown error !</span>
+      <v-btn color="white" text @click="snackbarPasswordResetUnknownError = false">Close</v-btn>
+    </v-snackbar>
+    <v-snackbar v-model="snackbarPasswordResetInvalidLink" :timeout="3000" top color="red">
+      <span>Link is invalid!</span>
+      <v-btn color="white" text @click="snackbarPasswordResetInvalidLink = false">Close</v-btn>
+    </v-snackbar>
     <v-text-field
             :type="passwordShowing ? 'password' : 'text'"
             v-model="password" 
@@ -47,6 +55,8 @@ export default {
         // data used in ui actions
         passwordShowing: true,
         snackbarPasswordReset: false,
+        snackbarPasswordResetUnknownError: false,
+        snackbarPasswordResetInvalidLink: false,
 
         //user ID
         userID: "",
@@ -90,7 +100,11 @@ export default {
             setTimeout(() => {
               this.loginRedirect();
             }, 3000);
+          }).catch(() => {
+            this.snackbarPasswordResetUnknownError = true
           })
+        }).catch(() => {
+          this.snackbarPasswordResetInvalidLink = true
         })
       }
     },
