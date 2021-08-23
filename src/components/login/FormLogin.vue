@@ -6,7 +6,7 @@
         </v-snackbar>
         <v-snackbar v-model="snackbarUserNotFound" :timeout="4000" top color="red">
             <span>The email you entered isn't connected to an account.</span>
-            <v-btn color="white" text @click="snackbarUserNotFound = false">Close</v-btn>
+            <v-btn color="white" text @click="signUpRedirect">CREATE AN ACCOUNT</v-btn>
         </v-snackbar>
         <v-snackbar v-model="snackbarWrongPassword" :timeout="4000" top color="red">
             <span>The password you’ve entered is incorrect.</span>
@@ -71,6 +71,10 @@ export default {
         };
     },
     methods: {
+        signUpRedirect(){
+            this.$router.push('signup'); 
+        },
+        
         login() {
             if(this.$refs.userLoginForm.validate()) {
                 firebase.auth().signInWithEmailAndPassword(this.email, this.password)
