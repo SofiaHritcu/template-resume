@@ -11,7 +11,7 @@
                 <v-col cols="5" class="text-center mx-5" justify="center">
                     <form-login class="my-4"></form-login>
                      <v-row class="text-center my-4" justify="center">
-                        <p class="text-overline font-weight-light">You don't have an account yet ???</p>
+                          <p class="text-overline font-weight-light">You don't have an account yet ???</p>
                     </v-row>
                     <v-btn
                         class="ma-2"
@@ -118,4 +118,5 @@ export default {
     border: #85a3e0 1px solid !important;
     opacity: 0.5;
 }
+
 </style>

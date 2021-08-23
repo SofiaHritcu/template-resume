@@ -116,7 +116,10 @@ export default {
                             firstName: this.firstName,
                             lastName: this.lastName,
                             email: this.email
-                        }).then(this.snackbarUserAdded = true)
+                        }).then(() => {
+                            this.snackbarUserAdded = true
+                            this.$router.push('/login')
+                        })
                     })
             }
         }

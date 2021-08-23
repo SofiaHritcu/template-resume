@@ -33,6 +33,7 @@
 </template>
 
 <script>
+import firebase from 'firebase'
 export default {
     data() {
         return {
@@ -55,8 +56,16 @@ export default {
     methods: {
         login() {
             if(this.$refs.userLoginForm.validate()) {
-                console.log('submiting logging in user'+' '+this.email+' '+this.password);
-                this.$refs.userLoginForm.reset();
+                firebase.auth().signInWithEmailAndPassword(this.email, this.password)
+                .then(authUser => {
+                    if(authUser.user.emailVerified){
+                        console.log('email is verified')
+                        this.$router.push('/')
+                    }
+                    else {
+                        console.log('email not verified')
+                    }
+                })
             }
         }
     }
