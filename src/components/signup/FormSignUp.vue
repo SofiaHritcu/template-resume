@@ -67,6 +67,7 @@
 
 <script>
 import firebase from 'firebase'
+import db from '@/firebase/firebaseInit'
 export default {
     data() {
         return {
@@ -80,6 +81,9 @@ export default {
             // data used in ui actions
             passwordShowing: true,
             snackbarUserAdded: false,
+
+            //user ID
+            userID : '',
 
             // validation rules
             nameRules : [
@@ -105,7 +109,14 @@ export default {
                 + this.firstName + ' ' + this.lastName+' ' 
                 + this.email + ' ' + this.password);
                 firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
-                    .then(this.snackbarUserAdded = true)
+                    .then(data => {
+                        this.userID = data.user.uid;
+                        db.collection('users').doc(this.userID).set({
+                            firstName: this.firstName,
+                            lastName: this.lastName,
+                            email: this.email
+                        }).then(this.snackbarUserAdded = true)
+                    })
             }
         }
     }
