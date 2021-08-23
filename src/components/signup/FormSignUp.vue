@@ -66,6 +66,8 @@
 </template>
 
 <script>
+import firebase from 'firebase'
+import db from '@/firebase/firebaseInit'
 export default {
     data() {
         return {
@@ -79,6 +81,9 @@ export default {
             // data used in ui actions
             passwordShowing: true,
             snackbarUserAdded: false,
+
+            //user ID
+            userID : '',
 
             // validation rules
             nameRules : [
@@ -100,9 +105,19 @@ export default {
     methods: {
         submitSignUpForm() {
             if(this.$refs.userSignUpForm.validate()) {
-                console.log('submiting sign up user'+' '+this.firstName+' '+this.lastName+' '+this.email+' '+this.password);
-                this.$refs.userSignUpForm.reset();
-                this.snackbarUserAdded = true;
+                console.log('submiting sign up user' + ' '
+                + this.firstName + ' ' + this.lastName+' ' 
+                + this.email + ' ' + this.password);
+                firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
+                    .then(data => {
+                        data.user.sendEmailVerification();
+                        this.userID = data.user.uid;
+                        db.collection('users').doc(this.userID).set({
+                            firstName: this.firstName,
+                            lastName: this.lastName,
+                            email: this.email
+                        }).then(this.snackbarUserAdded = true)
+                    })
             }
         }
     }
