@@ -9,9 +9,15 @@
             </v-row>
             <v-row no-gutters justify="center" align="center"> 
                 <v-col cols="5" class="text-center mx-5" justify="center">
+<<<<<<< HEAD
                     <form-login class="mt-4 mb-10"></form-login>
                     <v-row class="text-center mt-5" justify="center">
                         <p class="text-overline font-weight-light">You don't have an account yet ?</p>
+=======
+                    <form-login class="my-4"></form-login>
+                     <v-row class="text-center my-4" justify="center">
+                          <p class="text-overline font-weight-light">You don't have an account yet ???</p>
+>>>>>>> caf64408619555c277681fa3f6f63368375bc925
                     </v-row>
                     <v-btn
                         class="mt-2 ma-5"
@@ -136,4 +142,5 @@ export default {
     border: #85a3e0 1px solid !important;
     opacity: 0.5;
 }
+
 </style>
