@@ -110,6 +110,7 @@ export default {
                 + this.email + ' ' + this.password);
                 firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
                     .then(data => {
+                        data.user.sendEmailVerification();
                         this.userID = data.user.uid;
                         db.collection('users').doc(this.userID).set({
                             firstName: this.firstName,
