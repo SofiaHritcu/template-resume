@@ -65,8 +65,13 @@ h5 {
     font-size: 1rem;
     border-radius: .25rem;
     transition: color 0.15s ease-in-out,background-color 0.15s ease-in-out,border-color 0.15s ease-in-out,box-shadow 0.15s ease-in-out;
-
 }
+
+.classic-button:hover{
+    background-color:#2952a3;
+}
+
+
 
 h2{
     font-size:3rem;
