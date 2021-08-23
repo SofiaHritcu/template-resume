@@ -44,7 +44,7 @@ h5 {
 }
 
 .classic-button {
-    background-color: #3366cc;
+    background-color: #85a3e0;
     color: white !important;
     line-height: 1.5;
     font-weight: bold;
@@ -68,7 +68,7 @@ h5 {
 }
 
 .classic-button:hover{
-    background-color:#2952a3;
+    background-color:#3366cc;
 }
 
 
