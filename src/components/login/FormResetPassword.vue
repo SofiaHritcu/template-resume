@@ -1,6 +1,6 @@
 <template>
   <v-form ref="resetPasswordForm" class="resetPassword">
-    <v-snackbar v-model="snackbarPasswordReset" :timeout="4000" top color="#85a3e0">
+    <v-snackbar v-model="snackbarPasswordReset" :timeout="3000" top color="#85a3e0">
       <span>Now you have a new password ! </span>
       <v-btn color="white" text @click="snackbarPasswordReset = false">Close</v-btn>
     </v-snackbar>
@@ -37,7 +37,6 @@
 
 <script>
 import firebase from "firebase";
-import db from "@/firebase/firebaseInit";
 export default {
   data() {
     return {
@@ -64,25 +63,35 @@ export default {
     };
   },
   methods: {
+    loginRedirect() {
+      this.$router.push('/login');
+    },
+
+    getParameterByName( name ) {
+      name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+      var regexS = "[\\?&]"+name+"=([^&#]*)";
+      var regex = new RegExp( regexS );
+      var results = regex.exec( window.location.href );
+      if( results == null )
+        return "";
+      else
+        return decodeURIComponent(results[1].replace(/\+/g, " "));
+    },
+
     submitNewPassword() {
       if (this.$refs.resetPasswordForm.validate()) {
-        console.log("submiting password " + " " + this.password);
-        // firebase
-        //   .auth()
-        //   .createUserWithEmailAndPassword(this.email, this.password)
-        //   .then((data) => {
-        //     data.user.sendEmailVerification();
-        //     this.userID = data.user.uid;
-        //     db.collection("users")
-        //       .doc(this.userID)
-        //       .set({
-        //         firstName: this.firstName,
-        //         lastName: this.lastName,
-        //         email: this.email,
-        //       })
-        //       .then((this.snackbarEmailSent = true));
-        //   });
-        this.snackbarPasswordReset = true;
+        var newPassword = this.password
+        var actionCode = this.getParameterByName('oobCode')
+        firebase.auth().verifyPasswordResetCode(actionCode)
+        .then(() => {
+          firebase.auth().confirmPasswordReset(actionCode, newPassword)
+          .then(() => {
+            this.snackbarPasswordReset = true
+            setTimeout(() => {
+              this.loginRedirect();
+            }, 3000);
+          })
+        })
       }
     },
   },
