@@ -10,7 +10,11 @@
         </v-snackbar>
         <v-snackbar v-model="snackbarWrongPassword" :timeout="4000" top color="red">
             <span>The password you’ve entered is incorrect.</span>
-            <v-btn color="white" text @click="snackbarWrongPassword = false">Close</v-btn>
+            <v-btn color="white" text @click="forgotPasswordRedirect">FORGOT PASSWORD</v-btn>
+        </v-snackbar>
+        <v-snackbar v-model="snackbarUnknownLoginError" :timeout="4000" top color="red">
+            <span>Unknown error.</span>
+            <v-btn color="white" text @click="snackbarUnknownLoginError">CLOSE</v-btn>
         </v-snackbar>
         <v-text-field 
                 v-model="email" 
@@ -57,6 +61,7 @@ export default {
             snackbarEmailNotVerified: false,
             snackbarUserNotFound: false,
             snackbarWrongPassword: false,
+            snackbarUnknownLoginError: false,
 
             // data used in ui actions
             passwordShowing: true,
@@ -71,10 +76,14 @@ export default {
         };
     },
     methods: {
-        signUpRedirect(){
+        signUpRedirect() {
             this.$router.push('signup'); 
         },
-        
+
+        forgotPasswordRedirect() {
+            this.$router.push('forgotpassword')
+        },
+
         login() {
             if(this.$refs.userLoginForm.validate()) {
                 firebase.auth().signInWithEmailAndPassword(this.email, this.password)
@@ -93,6 +102,9 @@ export default {
                     }
                     else if(t.code == 'auth/wrong-password'){
                         this.snackbarWrongPassword = true
+                    }
+                    else {
+                        this.snackbarUnknownLoginError = true
                     }
                 })
             }
