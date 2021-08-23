@@ -1,8 +1,12 @@
 <template>
     <v-form ref="userLoginForm">
-         <v-snackbar v-model="snackbarEmailNotVerified" :timeout="4000" top color="red">
-            <span>Please verify your e-mail address!</span>
+         <v-snackbar v-model="snackbarEmailNotVerified" :timeout="4000" top color="orange">
+            <span>Please verify your email address!</span>
             <v-btn color="white" text @click="snackbarEmailNotVerified = false">Close</v-btn>
+        </v-snackbar>
+        <v-snackbar v-model="snackbarUserNotFound" :timeout="4000" top color="red">
+            <span>The email you entered isn't connected to an account.</span>
+            <v-btn color="white" text @click="snackbarUserNotFound = false">Close</v-btn>
         </v-snackbar>
         <v-text-field 
                 v-model="email" 
@@ -47,6 +51,7 @@ export default {
 
             // snackbars
             snackbarEmailNotVerified: false,
+            snackbarUserNotFound: false,
 
             // data used in ui actions
             passwordShowing: true,
@@ -71,6 +76,11 @@ export default {
                     }
                     else {
                         this.snackbarEmailNotVerified = true
+                    }
+                })
+                .catch(t => {
+                    if(t.code == 'auth/user-not-found'){
+                        this.snackbarUserNotFound = true
                     }
                 })
             }
