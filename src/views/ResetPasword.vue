@@ -2,13 +2,13 @@
   <div> 
         <v-container class="signup-form mb-6 my-10" align="center">
             <v-row class="text-center" justify="center">
-                <p class="my-5 text-h4 font-weight-light">Let's find your account</p>
+                <p class="my-5 text-h4 font-weight-light">We'll set up your password again</p>
             </v-row>
             <v-row class="text-center" justify="center">
-                <p class="my-2 text-overline font-weight-light">Complete the field and an e-mail will be sent to your adress for resetting the password !</p>
+                <p class="my-2 text-overline font-weight-light">Complete the fields and the password will be updated!</p>
             </v-row>
             <v-row  class="text-center" justify="center">
-                <form-forgot-password class="my-5" width="100%"></form-forgot-password>
+                <form-reset-password class="my-5" width="100%"></form-reset-password>
             </v-row>
             <v-row no-gutters> 
             </v-row>
@@ -17,12 +17,12 @@
 </template>
 
 <script>
-import FormForgotPassword from '../components/login/FormForgotPassword.vue'
+import FormResetPassword from '../components/login/FormResetPassword.vue'
 
 export default {
     name: 'ForgotPassword',
     components: {
-        FormForgotPassword
+        FormResetPassword
     },
     methods: {
        
