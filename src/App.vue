@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <login></login>
+    <router-view to="/login">Login</router-view>
   </v-app>
 </template>
 
