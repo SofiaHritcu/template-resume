@@ -1,6 +1,6 @@
 <template>
     <v-form ref="userSignUpForm">
-        <v-snackbar v-model="snackbarUserAdded" :timeout="4000" top color="#85a3e0">
+        <v-snackbar v-model="snackbarUserAdded" :timeout="3000" top color="#85a3e0">
             <span>Awesome! You are now signed up!</span>
             <v-btn color="white" text @click="snackbarUserAdded = false">Close</v-btn>
         </v-snackbar>
@@ -103,6 +103,10 @@ export default {
         };
     },
     methods: {
+        loginRedirect() {
+            this.$router.push('/login');
+         },
+
         submitSignUpForm() {
             if(this.$refs.userSignUpForm.validate()) {
                 console.log('submiting sign up user' + ' '
@@ -118,7 +122,9 @@ export default {
                             email: this.email
                         }).then(() => {
                             this.snackbarUserAdded = true
-                            this.$router.push('/login')
+                            setTimeout(() => {
+                                this.loginRedirect();
+                            }, 3000);
                         })
                     })
             }
