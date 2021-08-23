@@ -12,7 +12,8 @@
                         color="indigo"
                         @click="signUpRedirect"
                     >
-                        <router-link to="/signup">Sign Up</router-link>
+                        Sign Up
+                        <router-view to="/signup">Sign Up</router-view>
                     </v-btn>
                 </v-col>
                 <v-col cols="2">
