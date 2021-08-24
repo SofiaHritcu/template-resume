@@ -59,4 +59,14 @@ export default {
     height: 150px;
     object-fit: contain;
 }
+
+.what-i-do {
+    font-size: 2rem;
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+.what-i-do h3 {
+    font-size: 2rem;
+}
 </style>
