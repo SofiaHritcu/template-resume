@@ -3,7 +3,7 @@
     <div class="sidebar">
       <h1 class="text-h5 font-weight-thin" v-if="isLongName"> {{ name }} </h1>
       <h1 class="text-h3 font-weight-thin" v-else> {{ name }} </h1>
-      <img v-bind:src="image_src" class="imgg" />
+      <img v-bind:src="profileImage" class="imgg" />
       <p class="description text-h6 font-weight-thin">{{ description }}</p>
       <div class="socials">
         <a href="https://www.linkedin.com/" class="fa fa-linkedin d-inline"></a>
@@ -138,6 +138,7 @@
 // :href="name"
 import image from "../assets/testImg.jpg";
 import firebase from 'firebase'
+import 'firebase/storage'
 import db from '@/firebase/firebaseInit.js'
 
 export default {
@@ -149,7 +150,7 @@ export default {
       lastName:'dude',
       isLongName:'',
       name: '',
-      image_src: image,
+      profileImage: image,
       description:
         "Hi, my name is Some Dude and I'm a senior software engineer. Welcome to my personal website!",
     };
@@ -193,6 +194,10 @@ export default {
           this.name = this.firstName + ' ' + this.lastName;
           this.longName();
           this.description = doc.data().description;
+          var storageRef = firebase.storage().ref(`profilePictures/${this.userID}.jpg`).getDownloadURL()
+          .then((url)=> {
+            this.profileImage = url;
+          })
         }
         else {
           console.log("No such document!");
