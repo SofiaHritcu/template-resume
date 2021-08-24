@@ -1,16 +1,21 @@
 <template>
   <v-app>
-    <div class="starts fixed-top"></div>
+    <router-view to="/login">Login</router-view>
   </v-app>
 </template>
 
 <script>
+import Login from './views/Login.vue';
+
 export default {
-  name: "App",
-  components: {},
+  components: { Login },
+  name: 'App',
 
   data: () => ({
     //
   }),
 };
 </script>
+<style>
+  @import "https://cdn.jsdelivr.net/npm/animate.css@3.5.1";
+</style>
