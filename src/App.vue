@@ -1,21 +1,24 @@
 <template>
   <v-app>
-    <router-view to="/login">Login</router-view>
+    <body>
+      <div class="starts">
+        <Resume></Resume>
+      </div>
+    </body>
   </v-app>
 </template>
 
 <script>
-import Login from './views/Login.vue';
-
+import Resume from "./views/Resume.vue";
 export default {
-  components: { Login },
-  name: 'App',
+  components: {
+    Resume,
+  },
+  name: "App",
 
   data: () => ({
     //
   }),
 };
 </script>
-<style>
-  @import "https://cdn.jsdelivr.net/npm/animate.css@3.5.1";
-</style>
+<style></style>
