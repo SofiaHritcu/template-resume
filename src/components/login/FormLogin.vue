@@ -90,7 +90,7 @@ export default {
                 .then(authUser => {
                     if(authUser.user.emailVerified){
                         console.log('email is verified')
-                        this.$router.push('/')
+                        this.$router.push('/home')
                     }
                     else {
                         this.snackbarEmailNotVerified = true

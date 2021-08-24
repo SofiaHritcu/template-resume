@@ -99,6 +99,35 @@
           >
         </div>
       </div>
+      <hr />
+      <v-row class="sections" justify="center" align="center" :v-if="isLoggedIn">
+        <div class="my-3 mr-15 d-flex">
+          <v-btn
+              large
+              color="#85a3e0"
+              class="white--text"
+              @click="editPortfolio"
+          >
+              <v-icon left color="white">
+                  mdi-account-edit-outline
+              </v-icon>
+              Edit my portfolio
+          </v-btn>
+        </div>
+        <div class="my-3 ml-8 d-flex">
+          <v-btn
+              large
+              color="#85a3e0"
+              class="white--text"
+              @click="logOut"
+          >
+              <v-icon left color="white">
+                  mdi-account-arrow-right-outline
+              </v-icon>
+              Log out
+          </v-btn>
+        </div>
+      </v-row>
     </div>
   </body>
 </template>
@@ -106,8 +135,9 @@
 <script>
 // :href="name"
 import image from "../assets/testImg.jpg";
+import firebase from 'firebase'
+
 export default {
-  props: ["name"],
   data() {
     return {
       name: "Some Dude",
@@ -116,6 +146,26 @@ export default {
         "Hi, my name is Some Dude and I'm a senior software engineer. Welcome to my personal website!",
     };
   },
+  computed: {
+    isLoggedIn() {
+      firebase.auth().onAuthStateChanged(user => {
+        // If user obj does not exist --> redirect to login page
+        if (!user) {
+          return false;
+        } else {
+          return true;
+        }
+    });
+    }
+  },
+  methods: {
+    editPortfolio() {
+      this.$router.push('/edit')
+    },
+    logOut() {
+      console.log("logging out");
+    }
+  }
 };
 </script>
 
