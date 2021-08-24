@@ -55,10 +55,8 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
-
     // Load user
     firebase.auth().onAuthStateChanged(user => {
-
       // If user obj does not exist --> redirect to login page
       if (!user) {
         next({ name: 'Login' });

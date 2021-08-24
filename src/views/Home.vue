@@ -1,7 +1,7 @@
 <template>
   <v-row>
     <v-col cols="3">
-      <navbar></navbar>
+      <navbar :onAbout="true"></navbar>
     </v-col>
     <v-col cols="9">
       <Home_introduction_section picture_user="profile.jpg" user_name="Simon Doe" job_name="Software developer" job_description="I'm a software engineer specialised in frontend and backend development for complex scalable web apps. I write about software development on my blog. Want to know how I may help your project? Check out my project portfolio and online resume." />

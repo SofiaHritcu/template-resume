@@ -1,9 +1,13 @@
 <template>
-  <p>Welcome to the editing page !</p>
+  <div>
+    <Navbar></Navbar>
+  </div>
 </template>
 
 <script>
+import Navbar from '../components/Navbar.vue'
 export default {
+  components: { Navbar },
     name: 'Edit',
 }
 </script>
