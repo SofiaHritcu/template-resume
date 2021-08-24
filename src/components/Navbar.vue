@@ -1,7 +1,7 @@
 <template>
   <body>
     <div class="sidebar">
-      <h1 class="text-h3 font-weight-thin ">{{ Name }}</h1>
+      <h1 class="text-h3 font-weight-thin ">{{ name }}</h1>
       <img v-bind:src="image_src" class="imgg" />
       <p class="description text-h6 font-weight-thin">{{ description }}</p>
       <div class="socials">
@@ -31,7 +31,9 @@
               d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"
             />
           </svg>
-          <a href="#" class="section-link text-heading-5 font-weight-light my-2">About Me</a>
+          <a href="#" class="section-link text-heading-5 font-weight-light my-2"
+            >About Me</a
+          >
         </div>
         <div class="linkss d-flex">
           <svg
@@ -50,7 +52,9 @@
               d="M1 6v-.5a.5.5 0 0 1 1 0V6h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V9h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 2.5v.5H.5a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1H2v-.5a.5.5 0 0 0-1 0z"
             />
           </svg>
-          <a href="#" class="section-link text-heading-5 font-weight-light my-2">Portfolio</a>
+          <a href="#" class="section-link text-heading-5 font-weight-light my-2"
+            >Portfolio</a
+          >
         </div>
         <div class="linkss d-flex">
           <svg
@@ -69,7 +73,9 @@
               d="M5 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 5 8zm0-2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm0 5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-1-5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zM4 8a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zm0 2.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0z"
             />
           </svg>
-          <a href="#" class="section-link text-heading-5 font-weight-light my-2">Resume</a>
+          <a href="#" class="section-link text-heading-5 font-weight-light my-2"
+            >Resume</a
+          >
         </div>
         <div class="linkss d-flex">
           <svg
@@ -88,7 +94,9 @@
               d="m2.165 15.803.02-.004c1.83-.363 2.948-.842 3.468-1.105A9.06 9.06 0 0 0 8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6a10.437 10.437 0 0 1-.524 2.318l-.003.011a10.722 10.722 0 0 1-.244.637c-.079.186.074.394.273.362a21.673 21.673 0 0 0 .693-.125zm.8-3.108a1 1 0 0 0-.287-.801C1.618 10.83 1 9.468 1 8c0-3.192 3.004-6 7-6s7 2.808 7 6c0 3.193-3.004 6-7 6a8.06 8.06 0 0 1-2.088-.272 1 1 0 0 0-.711.074c-.387.196-1.24.57-2.634.893a10.97 10.97 0 0 0 .398-2z"
             />
           </svg>
-          <a href="#" class="section-link text-heading-5 font-weight-light my-2">Contact</a>
+          <a href="#" class="section-link text-heading-5 font-weight-light my-2"
+            >Contact</a
+          >
         </div>
       </div>
     </div>
@@ -96,13 +104,13 @@
 </template>
 
 <script>
+// :href="name"
 import image from "../assets/testImg.jpg";
 export default {
-  name: "Navbar",
-  props: {},
+  props: ["name"],
   data() {
     return {
-      Name: "Some Dude",
+      name: "Some Dude",
       image_src: image,
       description:
         "Hi, my name is Some Dude and I'm a senior software engineer. Welcome to my personal website!",

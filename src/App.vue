@@ -1,18 +1,13 @@
 <template>
   <v-app>
-    <div class="starts fixed-top">
-      <Navbar></Navbar>
-    </div>
+    <div class="starts fixed-top"></div>
   </v-app>
 </template>
 
 <script>
-import Navbar from "./views/Navbar.vue";
 export default {
   name: "App",
-  components: {
-    Navbar,
-  },
+  components: {},
 
   data: () => ({
     //
