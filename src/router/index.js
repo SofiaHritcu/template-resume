@@ -7,6 +7,7 @@ import SignUp from '../views/SignUp.vue'
 import ForgotPassword from '../views/ForgotPassword.vue'
 import ResetPassword from '../views/ResetPasword.vue'
 import firebase from 'firebase'
+import "firebase/storage"
 
 
 Vue.use(VueRouter)
