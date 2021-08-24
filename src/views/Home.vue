@@ -9,10 +9,10 @@
 
 <script>
 
-import Home_introduction_section from '../../src/components/home-introduction-section.vue'
-import Home_technologies from '../../src/components/home-technologies'
-import Home_slider_projects from '../../src/components/home-slider-projects'
-import Home_learning from '../../src/components/home-learning.vue'
+import Home_introduction_section from '../../src/components/home/home-introduction-section.vue'
+import Home_technologies from '../../src/components/home/home-technologies'
+import Home_slider_projects from '../../src/components/home/home-slider-projects'
+import Home_learning from '../../src/components/home/home-learning.vue'
 
   export default {
     name: 'Home',
