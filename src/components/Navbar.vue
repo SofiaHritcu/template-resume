@@ -106,7 +106,7 @@
           <v-btn
               large
               color="#85a3e0"
-              :class="[onEdit ? 'activeButton' : '']"
+              :class="[onEditPortfolio ? 'activeButton' : '']"
               class="white--text classic-button"
               @click="editPortfolio"
           >
@@ -114,6 +114,20 @@
                   mdi-account-edit-outline
               </v-icon>
               Edit my portfolio
+          </v-btn>
+        </div>
+        <div class="my-3 ml-6 d-flex">
+          <v-btn
+              large
+              color="#85a3e0"
+              :class="[onEditProfile ? 'activeButton' : '']"
+              class="white--text classic-button"
+              @click="settings"
+          >
+              <v-icon left color="white">
+                  mdi-cogs
+              </v-icon>
+              Settings
           </v-btn>
         </div>
         <div class="my-3 ml-8 d-flex">
@@ -141,7 +155,7 @@ import firebase from 'firebase'
 import db from '@/firebase/firebaseInit.js'
 
 export default {
-  props: ['onAbout', 'onPortfolio', 'onResume', 'onContact', 'onEdit'],
+  props: ['onAbout', 'onPortfolio', 'onResume', 'onContact', 'onEditPortfolio', 'onEditProfile'],
   data() {
     return {
       userID:'',
@@ -180,6 +194,9 @@ export default {
     },
     editPortfolio() {
       this.$router.push('/edit')
+    },
+    settings() {
+      this.$router.push('/settings')
     },
     logOut() {
       console.log("logging out");
