@@ -2,15 +2,19 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import vuetify from './plugins/vuetify'
-import 'material-design-icons-iconfont/dist/material-design-icons.css'
+import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
+import { BCarousel } from 'bootstrap-vue'
+
 
 Vue.config.productionTip = false
+Vue.use(BootstrapVue)
+Vue.component('b-carousel', BCarousel)
 
 new Vue({
   router,
   vuetify,
-  theme: {
-    appBlue: '#3366cc',
-  },
   render: h => h(App)
 }).$mount('#app')
+
