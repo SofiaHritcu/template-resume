@@ -1,14 +1,17 @@
 <template>
   <v-app>
     <router-view to="/login">Login</router-view>
+    <Contact />
   </v-app>
 </template>
 
 <script>
 import Login from './views/Login.vue';
+import Contact from './views/Contact.vue'
 
 export default {
-  components: { Login },
+  components: { Login,
+  Contact },
   name: 'App',
 
   data: () => ({
