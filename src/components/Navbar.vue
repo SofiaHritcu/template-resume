@@ -106,6 +106,7 @@
           <v-btn
               large
               color="#85a3e0"
+              :class="[onEdit ? 'activeButton' : '']"
               class="white--text classic-button"
               @click="editPortfolio"
           >
@@ -140,7 +141,7 @@ import firebase from 'firebase'
 import db from '@/firebase/firebaseInit.js'
 
 export default {
-  props: ['onAbout', 'onPortfolio', 'onResume', 'onContact'],
+  props: ['onAbout', 'onPortfolio', 'onResume', 'onContact', 'onEdit'],
   data() {
     return {
       userID:'',
@@ -165,18 +166,12 @@ export default {
         }
     });
     },
-<<<<<<< HEAD
-    longName() {
-      console.log(this.name.length >= 12);
-      return this.name.length >= 12;
-    }
-=======
->>>>>>> 879a359bd82c022a3742e3696798c781ca07da6c
   },
   methods: {
     longName() {
-      console.log(this.name.length >= 12);
-      if(this.name.length >= 12){
+      console.log(this.name);
+      console.log(this.name.length > 12);
+      if(this.name.length > 12){
         this.isLongName = true;
       }
       else {
@@ -278,6 +273,11 @@ hr {
 .activeClass {
     color:#85a3e0 !important;
     font-weight: 400 !important;
+}
+
+.activeButton, .activeButton:hover {
+  color: #3366cc !important;
+  background-color:#85a3e0 !important;
 }
 
 @media only screen and (max-width: 768px) {

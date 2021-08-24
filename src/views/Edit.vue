@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Navbar></Navbar>
+    <navbar :onEdit="true"></navbar>
   </div>
 </template>
 
