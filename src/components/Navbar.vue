@@ -1,7 +1,7 @@
 <template>
   <body>
     <div class="sidebar">
-        <h1 class="text-h3 font-weight-thin">{{ name }}</h1>
+      <h1 class="text-h3 font-weight-thin ">{{ firstName }}  {{ lastName }}</h1>
       <img v-bind:src="image_src" class="imgg" />
       <p class="description text-h6 font-weight-thin">{{ description }}</p>
       <div class="socials">
@@ -136,12 +136,15 @@
 // :href="name"
 import image from "../assets/testImg.jpg";
 import firebase from 'firebase'
+import db from '@/firebase/firebaseInit.js'
 
 export default {
   props: ['onAbout', 'onPortfolio', 'onResume', 'onContact'],
   data() {
     return {
-      name: "Ionut IOnut",
+      userID:'',
+      firstName: 'some',
+      lastName:'dude',
       image_src: image,
       description:
         "Hi, my name is Some Dude and I'm a senior software engineer. Welcome to my personal website!",
@@ -153,6 +156,8 @@ export default {
         if (!user) {
           return false;
         } else {
+          this.userID = user.uid;
+          this.fetchCurrentUserData();
           return true;
         }
     });
@@ -168,6 +173,23 @@ export default {
     },
     logOut() {
       console.log("logging out");
+    },
+    fetchCurrentUserData() {
+      db.collection('users').doc(this.userID).get()
+      .then((doc) => {
+        if (doc.exists) {
+          this.firstName = doc.data().firstName;
+          this.lastName = doc.data().lastName;
+          this.description = doc.data().description;
+        }
+        else {
+          console.log("No such document!");
+          this.$router.push('/login');
+        }
+      }).catch((error) => {
+        console.log("Error getting document: ", error)
+        this.$router.push('/login');
+      })
     }
   }
 };
