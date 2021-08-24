@@ -11,13 +11,9 @@
       </v-avatar>
       <p class="description text-h6 font-weight-thin">{{ description }}</p>
       <div class="socials">
-        <a href="https://www.linkedin.com/" class="fa fa-linkedin d-inline"></a>
-        <a href="https://www.github.com/" class="fa fa-github d-inline"></a>
-        <a
-          href="https://www.instagram.com/"
-          class="fa fa-instagram d-inline"
-        ></a>
-        <a href="https://www.yahoo.com/" class="fa fa-yahoo d-inline"></a>
+        <a :href="`${ linkedInLink }`" class="fa fa-linkedin d-inline" v-if="linkedInLink"></a>
+        <a :href="`${ gitHubLink }`" class="fa fa-github d-inline" v-if="gitHubLink"></a>
+        <a :href="`${ instagramLink }`" class="fa fa-instagram d-inline" v-if="instagramLink"></a>
       </div>
       <hr />
       <div class="sections">
@@ -158,6 +154,9 @@ export default {
       profileImage: image,
       description:
         "Hi, my name is Some Dude and I'm a senior software engineer. Welcome to my personal website!",
+      linkedInLink: '',
+      gitHubLink: '',
+      instagramLink: '',
     };
   },
   computed: {
@@ -199,6 +198,9 @@ export default {
           this.name = this.firstName + ' ' + this.lastName;
           this.longName();
           this.description = doc.data().description;
+          this.linkedInLink = doc.data().linkedInLink;
+          this.instagramLink = doc.data().instagramLink;
+          this.gitHubLink = doc.data().gitHubLink;
           var storageRef = firebase.storage().ref(`profilePictures/${this.userID}.jpg`).getDownloadURL()
           .then((url)=> {
             this.profileImage = url;
