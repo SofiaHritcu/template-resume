@@ -1,7 +1,8 @@
 <template>
   <body>
     <div class="sidebar">
-      <h1 class="text-h3 font-weight-thin ">{{ firstName }}  {{ lastName }}</h1>
+      <h1 class="text-h5 font-weight-thin" v-if="isLongName"> {{ name }} </h1>
+      <h1 class="text-h3 font-weight-thin" v-else> {{ name }} </h1>
       <img v-bind:src="image_src" class="imgg" />
       <p class="description text-h6 font-weight-thin">{{ description }}</p>
       <div class="socials">
@@ -144,6 +145,8 @@ export default {
       userID:'',
       firstName: 'some',
       lastName:'dude',
+      isLongName:'',
+      name: '',
       image_src: image,
       description:
         "Hi, my name is Some Dude and I'm a senior software engineer. Welcome to my personal website!",
@@ -161,9 +164,18 @@ export default {
           return true;
         }
     });
-    }
+    },
   },
   methods: {
+    longName() {
+      console.log(this.name.length >= 12);
+      if(this.name.length >= 12){
+        this.isLongName = true;
+      }
+      else {
+        this.isLongName = false;
+      }
+    },
     editPortfolio() {
       this.$router.push('/edit')
     },
@@ -176,6 +188,8 @@ export default {
         if (doc.exists) {
           this.firstName = doc.data().firstName;
           this.lastName = doc.data().lastName;
+          this.name = this.firstName + ' ' + this.lastName;
+          this.longName();
           this.description = doc.data().description;
         }
         else {
