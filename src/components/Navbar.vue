@@ -3,7 +3,12 @@
     <div class="sidebar">
       <h1 class="text-h5 font-weight-thin" v-if="isLongName"> {{ name }} </h1>
       <h1 class="text-h3 font-weight-thin" v-else> {{ name }} </h1>
-      <img v-bind:src="profileImage" class="imgg" />
+      <v-avatar size="250">
+        <v-img v-bind:src="profileImage"
+          max-height="200"
+          max-width="200">
+        </v-img>
+      </v-avatar>
       <p class="description text-h6 font-weight-thin">{{ description }}</p>
       <div class="socials">
         <a href="https://www.linkedin.com/" class="fa fa-linkedin d-inline"></a>
@@ -248,12 +253,6 @@ export default {
 h1 {
   color: #adc2eb;
   font-size: 32px;
-}
-.imgg {
-  width: 170px;
-  height: auto;
-  border-radius: 50%;
-  margin-top: 20px;
 }
 .description {
   padding-top: 15px;
