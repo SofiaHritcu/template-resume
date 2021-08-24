@@ -150,7 +150,8 @@
 
 <script>
 // :href="name"
-import image from "../assets/testImg.jpg";
+// import image from "../assets/testImg.jpg";
+import image from "../assets/account.png";
 import firebase from 'firebase'
 import 'firebase/storage'
 import db from '@/firebase/firebaseInit.js'

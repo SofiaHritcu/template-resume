@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Edit from '../views/Edit.vue'
+import Settings from '../views/Settings.vue'
 import Login from '../views/Login.vue'
 import SignUp from '../views/SignUp.vue'
 import ForgotPassword from '../views/ForgotPassword.vue'
@@ -23,6 +24,12 @@ const routes = [
     path: '/edit',
     name: 'Edit',
     component: Edit,
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/settings',
+    name: 'Settings',
+    component: Settings,
     meta: { requiresAuth: true }
   },
   {
