@@ -1,47 +1,30 @@
 <template>
-  <body>
-    <div class="starts fixed-top">
+  <v-row>
+    <v-col cols="3">
       <Navbar></Navbar>
-    </div>
-    <div class="resume container">
-      <pdf src="testCV.pdf" class="pdff mr-0"></pdf>
-    </div>
-  </body>
+    </v-col>
+    <v-col cols="9">
+      <introduction-resume-section></introduction-resume-section>
+      <resume-document></resume-document>
+    </v-col>
+  </v-row>
 </template>
 
 <script>
-import pdf from "vue-pdf";
 import Navbar from "../components/Navbar.vue";
+import IntroductionResumeSection from '../components/resume/introduction-resume-section.vue';
+import ResumeDocument from '../components/resume/ResumeDocument.vue';
+
 export default {
   components: {
-    pdf,
     Navbar,
-  },
-  props: ["name"],
-  data() {
-    return {
-      name: "Some Dude",
-      //cv_src: testCV,
-      description:
-        "Hi, my name is Some Dude and I'm a senior software engineer. Welcome to my personal website!",
-    };
-  },
+    IntroductionResumeSection,
+    ResumeDocument,
+  }
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.pdff {
-  width: 80%;
-}
-.resume {
-  margin-left: 330px;
-}
 
-@media only screen and (max-width: 768px) {
-  .resume {
-    margin-left: 0px;
-    margin-top: 650px;
-  }
-}
 </style>
