@@ -1,16 +1,18 @@
 <template>
   <v-app>
     <router-view to="/login">Login</router-view>
+    <Home />
   </v-app>
 </template>
 
 <script>
 import Login from './views/Login.vue';
-import Contact from './views/Contact.vue'
+import Home from './views/Home.vue'
 
 export default {
-  components: { Login,
-  Contact },
+  components: { 
+  Login,
+  Home },
   name: 'App',
 
   data: () => ({
