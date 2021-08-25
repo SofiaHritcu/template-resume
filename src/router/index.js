@@ -9,6 +9,7 @@ import ForgotPassword from '../views/ForgotPassword.vue'
 import ResetPassword from '../views/ResetPasword.vue'
 import firebase from 'firebase'
 import "firebase/storage"
+import UserManagement from '../views/UserManagement.vue'
 
 
 Vue.use(VueRouter)
@@ -43,16 +44,10 @@ const routes = [
     component: Login
   },
   {
-    path: '/forgotpassword',
-    name: 'ForgotPassword',
-    component: ForgotPassword
-  },
-  {
-    path: '/resetpassword',
-    name: 'ResetPassword',
-    component: ResetPassword
-  },
-  
+    path: '/usermanagement',
+    name: 'UserManagement',
+    component: UserManagement
+  }
 ]
 
 const router = new VueRouter({

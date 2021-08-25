@@ -5,9 +5,41 @@
         <div class="what-i-do pl-5 mb-4">
             <h3>What I do </h3>
         </div>
+
         <div class="skills_description pb-5">
             <p>{{skills_description}}</p>
         </div>
+
+        <!-- Skills with image section -->
+        <div class="row pt-5">
+            <div class="pt-5 skill-cols col-lg-4">
+                <div class="image-skill text-center">
+                     <img :src="require ('@/assets/' + skill_image )" alt="skill-to-learn" />
+                </div>
+                <div class="title-learning text-center pt-3">
+                    <h3>{{skill_title_image_section}}</h3>
+                </div>
+            </div>
+            <div class="pt-5 skill-cols col-lg-4">
+                <div class="image-skill text-center">
+                     <img :src="require ('@/assets/' + skill_image )" alt="skill-to-learn" />
+                </div>
+                <div class="title-learning text-center pt-3">
+                    <h3>{{skill_title_image_section}}</h3>
+                </div>
+            </div>
+            <div class="pt-5 skill-cols col-lg-4">
+                <div class="image-skill text-center">
+                     <img :src="require ('@/assets/' + skill_image )" alt="skill-to-learn" />
+                </div>
+                <div class="title-learning text-center pt-3">
+                    <h3>{{skill_title_image_section}}</h3>
+                </div>
+            </div>
+        </div>
+
+        <!-- Skills without image section -->
+
         <div class="row pt-5">
             <div class="technology-col col-xl-4">
                 <h4>{{skill_title}}</h4>
@@ -17,7 +49,7 @@
                 <h4>{{skill_title}}</h4>
                 <p>{{skill_details}}</p>
             </div>
-             <div class="technology-col col-xl-4">
+            <div class="technology-col col-xl-4">
                 <h4>{{skill_title}}</h4>
                 <p>{{skill_details}}</p>
             </div>
@@ -34,6 +66,8 @@ export default {
         skills_description: String,
         skill_title: String,
         skill_details: String,
+        skill_image:String,
+        skill_title_image_section:String,
     }
 }
 </script>
@@ -58,5 +92,11 @@ export default {
     position: absolute;
     left: 0;
     top: 0;
+}
+
+.image-skill img {
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
 }
 </style>
