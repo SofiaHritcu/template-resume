@@ -24,7 +24,7 @@
           dense
           :counter="150"
           color="#85a3e0"
-          :value="phrase"
+          v-model="phrase"
           prepend-inner-icon="mdi-pencil-outline"
           class="description ml-3"
         ></v-textarea>
@@ -245,7 +245,7 @@ export default {
       //2. skills
       skillsDescription: "",
       generalSkills: [
-        { order: 0, name: "CSS", image: "css.png" },
+        { order: 0, name: "CSS", image: "CSS.png" },
         { order: 1, name: "JavaScript", image: "JavaScript.png" },
         { order: 2, name: "C", image: "C.png" },
         { order: 3, name: "C++", image: "C++.png" },
@@ -328,13 +328,23 @@ export default {
       }
     },
 
+
+    getGeneralSkills() {
+        let generalSkillsName = [];
+        this.selectedSkills.forEach(selectedSkill => generalSkillsName.push(this.generalSkills[selectedSkill].name));
+        return generalSkillsName;
+    },
+
     submitUpdateAboutPage() {
         console.log("updating user " , this.userID 
                         , " role " , this.role 
                         , " phrase" , this.phrase 
                         , " technical skills " , this.selectedSkills
-                        , " particular skills " , this.particularSkills[0]
-                        , "learnings " , this.learnings[0]);
+                        , " particular skills " , this.particularSkills
+                        , "learnings " , this.learnings);
+        let skills = this.getGeneralSkills();
+        console.log(skills);
+        // selectedSkills - [0,1,3,4] ->  generalSkills
     }
   },
 
