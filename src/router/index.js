@@ -1,12 +1,20 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+<<<<<<< HEAD
+=======
+import Resume from '../views/Resume.vue'
+import Contact from '../views/Contact.vue'
+>>>>>>> develop
 import Edit from '../views/Edit.vue'
 import Settings from '../views/Settings.vue'
 import Login from '../views/Login.vue'
 import SignUp from '../views/SignUp.vue'
+<<<<<<< HEAD
 import ForgotPassword from '../views/ForgotPassword.vue'
 import ResetPassword from '../views/ResetPasword.vue'
+=======
+>>>>>>> develop
 import firebase from 'firebase'
 import "firebase/storage"
 import UserManagement from '../views/UserManagement.vue'
@@ -22,6 +30,21 @@ const routes = [
     meta: { requiresAuth: true }
   },
   {
+<<<<<<< HEAD
+=======
+    path: '/resume',
+    name: 'Resume',
+    component: Resume,
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/contact',
+    name: 'Contact',
+    component: Contact,
+    meta: { requiresAuth: true }
+  },
+  {
+>>>>>>> develop
     path: '/edit',
     name: 'Edit',
     component: Edit,
