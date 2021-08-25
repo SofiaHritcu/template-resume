@@ -196,7 +196,7 @@
                 <v-icon left color="white">
                     mdi-chevron-triple-left
                 </v-icon>
-                Update my ABOUT page
+                Update ABOUT ME
                 <v-icon right color="white">
                     mdi-chevron-triple-right
                 </v-icon>

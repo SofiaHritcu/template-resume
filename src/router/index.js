@@ -3,7 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Resume from '../views/Resume.vue'
 import Contact from '../views/Contact.vue'
-import Edit from '../views/Edit.vue'
+import EditAbout from '../views/EditAbout.vue'
 import Settings from '../views/Settings.vue'
 import Login from '../views/Login.vue'
 import SignUp from '../views/SignUp.vue'
@@ -34,9 +34,9 @@ const routes = [
     meta: { requiresAuth: true }
   },
   {
-    path: '/edit',
-    name: 'Edit',
-    component: Edit,
+    path: '/editabout',
+    name: 'EditAbout',
+    component: EditAbout,
     meta: { requiresAuth: true }
   },
   {
