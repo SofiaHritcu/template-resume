@@ -22,6 +22,7 @@
             hide-input
             accept="image/png, image/jpeg, image/jpg"
             prepend-icon="mdi-camera"
+            v-model="profilePictureChosen"
             @change="previewImage"
         >
         </v-file-input>
@@ -98,8 +99,9 @@ export default {
 
         //picture preview
         uploadValue: 0,
-        picture: null,
         imageData: '',
+        profilePictureChosen: null,
+
 
         //user ID
         userID: "",
@@ -150,20 +152,19 @@ export default {
     previewImage(event, img) {
         this.uploadValue = 0;
         this.picture = null;
-        this.imageData = event.target.files[0];
+        // this.imageData = event.target.files[0];
         this.onUpload();
     },
 
     onUpload() {
-        this.picture = null;
-        const storageRef = firebase.storage().ref(`profilePictures/${this.userID}.jpg`).put(this.imageData);
+        const storageRef = firebase.storage().ref(`profilePictures/${this.userID}.jpg`).put(this.profilePictureChosen);
         storageRef.on('state_changed', snapshot => {
             this.uploadValue = (snapshot.bytesTransferred/snapshot.totalBytes) * 100;
         }, error=>{console.log(error.message)},
         () => {
             this.uploadValue = 100;
             storageRef.snapshot.ref.getDownloadURL().then(url => {
-                this.picture = url;
+                this.profileImage = url;
             });
         });
     }, 

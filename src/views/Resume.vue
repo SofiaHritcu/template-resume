@@ -1,9 +1,9 @@
 <template>
   <v-row>
-    <v-col cols="3">
+    <v-col cols="2">
       <Navbar></Navbar>
     </v-col>
-    <v-col cols="9">
+    <v-col cols="10">
       <introduction-resume-section></introduction-resume-section>
       <resume-document></resume-document>
     </v-col>
