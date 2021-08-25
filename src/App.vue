@@ -1,7 +1,6 @@
 <template>
   <v-app>
     <router-view to="/login">Login</router-view>
-    <Contact />
   </v-app>
 </template>
 
