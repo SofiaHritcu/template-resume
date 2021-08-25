@@ -70,6 +70,7 @@
             </v-avatar>
             {{ skill.name }}
           </v-chip>
+
         </v-chip-group>
 
         <p class="text-overline font-weight-thin my-10" align="center">
@@ -109,7 +110,24 @@
           </v-form>
         </v-col>
         <v-col cols="6">
-          <v-chip-group
+
+            <div>
+                <v-card outlined v-for="particularSkill in particularSkills" :key="particularSkill.name" class="my-5">
+                     <v-avatar left>
+                        <v-img
+                        :src="require('@/assets/' + 'particularSkill.png')"
+                        width="100"
+                        ></v-img>
+                    </v-avatar>
+                    <v-card-title>
+                        <p class="text-overline"> {{ particularSkill.name }} </p>
+                    </v-card-title>
+                   
+                    <v-card-subtitle> {{ particularSkill.description }} </v-card-subtitle>
+                </v-card>
+            </div>
+
+          <!-- <v-chip-group
             v-model="particularAddedSkills"
             column
             multiple
@@ -129,7 +147,7 @@
               </v-avatar>
               {{ particularSkill.name }} | {{ particularSkill.description }}
             </v-chip>
-          </v-chip-group>
+          </v-chip-group> -->
         </v-col>
       </v-row>
       <v-row class="learning-card">
@@ -190,6 +208,21 @@
           </v-chip-group>
         </v-col>
       </v-row>
+      </v-row>
+      <v-row>
+           <v-btn
+                color="#85a3e0"
+                class="white--text classic-button"
+                @click="submitUpdateAboutPage"
+                >
+                <v-icon left color="white">
+                    mdi-chevron-triple-left
+                </v-icon>
+                Update my ABOUT page
+                <v-icon right color="white">
+                    mdi-chevron-triple-right
+                </v-icon>
+            </v-btn>
       </v-row>
     </v-form>
   </v-container>
@@ -294,6 +327,15 @@ export default {
         this.$refs.learningForm.reset();
       }
     },
+
+    submitUpdateAboutPage() {
+        console.log("updating user " , this.userID 
+                        , " role " , this.role 
+                        , " phrase" , this.phrase 
+                        , " technical skills " , this.selectedSkills
+                        , " particular skills " , this.particularSkills[0]
+                        , "learnings " , this.learnings[0]);
+    }
   },
 
   mounted() {
