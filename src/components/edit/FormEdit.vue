@@ -126,28 +126,6 @@
                     <v-card-subtitle> {{ particularSkill.description }} </v-card-subtitle>
                 </v-card>
             </div>
-
-          <!-- <v-chip-group
-            v-model="particularAddedSkills"
-            column
-            multiple
-            class="skills-group my-5"
-          >
-            <v-chip
-              filter
-              outlined
-              v-for="particularSkill in particularSkills"
-              :key="particularSkill.name"
-            >
-              <v-avatar left>
-                <v-img
-                  :src="require('@/assets/' + 'particularSkill.png')"
-                  width="50"
-                ></v-img>
-              </v-avatar>
-              {{ particularSkill.name }} | {{ particularSkill.description }}
-            </v-chip>
-          </v-chip-group> -->
         </v-col>
       </v-row>
       <v-row class="learning-card">
@@ -245,7 +223,7 @@ export default {
       //2. skills
       skillsDescription: "",
       generalSkills: [
-        { order: 0, name: "CSS", image: "CSS.png" },
+        { order: 0, name: "css", image: "css.png" },
         { order: 1, name: "JavaScript", image: "JavaScript.png" },
         { order: 2, name: "C", image: "C.png" },
         { order: 3, name: "C++", image: "C++.png" },
