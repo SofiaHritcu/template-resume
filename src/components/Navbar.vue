@@ -117,6 +117,20 @@
               ADD ABOUT ME
           </v-btn>
         </div>
+        <div class="my-3 mr-15 d-flex">
+          <v-btn
+              large
+              color="#85a3e0"
+              :class="[onEditPortfolio ? 'activeButton' : '']"
+              class="white--text classic-button"
+              @click="editPortfolio"
+          >
+              <v-icon left color="white">
+                  mdi-notebook-edit-outline
+              </v-icon>
+              ADD PORTFOLIO
+          </v-btn>
+        </div>
         <div class="my-3 ml-6 d-flex">
           <v-btn
               large
@@ -158,7 +172,7 @@ import 'firebase/storage'
 import db from '@/firebase/firebaseInit.js'
 
 export default {
-  props: ['onAbout', 'onPortfolio', 'onResume', 'onContact', 'onEditAbout', 'onEditProfile'],
+  props: ['onAbout', 'onPortfolio', 'onResume', 'onContact', 'onEditAbout', 'onEditPortfolio', 'onEditProfile'],
   data() {
     return {
       userID:'',
@@ -201,6 +215,9 @@ export default {
     },
     editAbout() {
       this.$router.push('/editabout')
+    },
+    editPortfolio() {
+      this.$router.push('/editportfolio')
     },
     settings() {
       this.$router.push('/settings')

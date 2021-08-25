@@ -4,6 +4,7 @@ import Home from '../views/Home.vue'
 import Resume from '../views/Resume.vue'
 import Contact from '../views/Contact.vue'
 import EditAbout from '../views/EditAbout.vue'
+import EditPortfolio from '../views/EditPortfolio.vue'
 import Settings from '../views/Settings.vue'
 import Login from '../views/Login.vue'
 import SignUp from '../views/SignUp.vue'
@@ -37,6 +38,12 @@ const routes = [
     path: '/editabout',
     name: 'EditAbout',
     component: EditAbout,
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/editportfolio',
+    name: 'EditPortfolio',
+    component: EditPortfolio,
     meta: { requiresAuth: true }
   },
   {
