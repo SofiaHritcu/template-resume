@@ -2,13 +2,17 @@
 <!-- contact form -->
 <div class="login-box">
     <h2>Get In Touch</h2>
-    <form>
+    <form @submit.prevent="onFormSubmit">
         <div class="user-box">
-            <input type="text" name="" required="">
-            <label>Name</label>
+            <input type="text" name="first-name" required="">
+            <label>First name</label>
+        </div>
+         <div class="user-box">
+            <input type="text" name="last-name" required="">
+            <label>Last name</label>
         </div>
         <div class="user-box">
-            <input type="email" name="" required="">
+            <input type="email" name="email" required="">
             <label>Email</label>
         </div>
         <div class="user-box">
@@ -33,9 +37,7 @@ export default {
 
     props: {
         description_contact: String,
-
     },
-
 }
 </script>
 
