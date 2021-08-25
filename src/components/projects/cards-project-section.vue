@@ -1,27 +1,22 @@
 <template>
 <!-- contact introduction -->
-<div class="row">
-    <div class="col-xl-3">
-    </div>
-
-    <div class="col-xl-9">
-        <div class="container">
-            <div class="row justify-content-start">
-                <div class='card mb-4 ml-0 mr-0 col-xl-6'>
-                    <div class='info'>
-                        <h1 class='title'>{{project_name}}</h1>
-                        <p class='description'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius esse corporis, velit porro impedit laudantium accusamus! Id velit, illum magni rem mollitia blanditiis iste maiores optio ipsa, est dolorem fugit. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius esse corporis, velit porro impedit laudantium accusamus! Id velit, illum magni rem mollitia blanditiis iste maiores optio ipsa, est dolorem fugit.</p>
-                    </div>
-                </div>
-                <div class='card mb-4 ml-0 mr-0 col-xl-6'>
-                    <div class='info'>
-                        <h1 class='title'>{{project_name}}</h1>
-                        <p class='description'>{{project_description}}</p>
-                    </div>
-                </div>
-               
+<!-- incercare pentru card background-image: -->
+<!-- v-bing:style="{ 'background-image': 'url(' + require('@/assets/') + background}" -->
+<div class="container">
+    <div class="row justify-content-start">
+        <div class='card mb-4 ml-0 mr-0 col-xl-6'>
+            <div class='info'>
+                <h1 class='title'>{{project_name}}</h1>
+                <p class='description'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius esse corporis, velit porro impedit laudantium accusamus! Id velit, illum magni rem mollitia blanditiis iste maiores optio ipsa, est dolorem fugit. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius esse corporis, velit porro impedit laudantium accusamus! Id velit, illum magni rem mollitia blanditiis iste maiores optio ipsa, est dolorem fugit.</p>
             </div>
         </div>
+        <div class='card mb-4 ml-0 mr-0 col-xl-6'>
+            <div class='info'>
+                <h1 class='title'>{{project_name}}</h1>
+                <p class='description'>{{project_description}}</p>
+            </div>
+        </div>
+
     </div>
 </div>
 </template>
@@ -32,6 +27,7 @@ export default {
     props: {
         project_name: String,
         project_description: String,
+        background:String,
     }
 
 }
@@ -52,7 +48,7 @@ main {
     min-height: 500px;
     box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 5px 8px 0px rgba(0, 0, 0, 0.14), 0px 1px 14px 0px rgba(0, 0, 0, 0.12);
     overflow: hidden;
-    background-image: url(https://source.unsplash.com/collection/905011/1000x1000);
+    /* background-image: url(https://source.unsplash.com/collection/905011/1000x1000); */
     background-size: cover;
 }
 
@@ -60,7 +56,7 @@ main {
     position: relative;
     width: 100%;
     height: 500px;
-    background-color: #fff;
+    background-color: #fff !important;
     transform: translateY(100%) translateY(-88px) translateZ(0);
     transition: transform 0.5s ease-out;
 }
@@ -73,7 +69,7 @@ main {
     width: 100%;
     height: 100%;
     overflow: hidden;
-    background-image: url(https://source.unsplash.com/collection/905011/1000x1000);
+    /* background-image: url(https://source.unsplash.com/collection/905011/1000x1000); */
     filter: blur(10px);
     background-size: cover;
     opacity: 0.25;
@@ -91,7 +87,7 @@ main {
     padding: 35px;
     font-size: 30px !important;
     line-height: 1;
-    color: rgba(0, 0, 0, 0.87);
+    color:white;
 }
 
 .description {
@@ -99,6 +95,7 @@ main {
     padding: 0 24px 24px;
     font-size: 18px;
     line-height: 1.5;
+    color: white;
 }
 
 /* General layout and typography stuff */
