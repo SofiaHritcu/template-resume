@@ -1,9 +1,9 @@
 <template>
 <v-row>
-  <v-col cols="3">
+  <v-col cols="2">
     <navbar></navbar>
   </v-col>
-  <v-col cols="9">
+  <v-col cols="10">
     <Introduction_contact_section description_contact="Interested in hiring me for your project or just want to say hi? You can fill in the contact form below or send me an email." />
     <Contact_form />
   </v-col>
