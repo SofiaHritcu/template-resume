@@ -181,6 +181,7 @@ export default {
           return false;
         } else {
           this.userID = user.uid;
+          console.log(this.userID);
           this.fetchCurrentUserData();
           return true;
         }

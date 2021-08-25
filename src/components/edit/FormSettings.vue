@@ -22,6 +22,7 @@
             hide-input
             accept="image/png, image/jpeg, image/jpg"
             prepend-icon="mdi-camera"
+            @change="previewImage"
         >
         </v-file-input>
     </v-row>
@@ -82,29 +83,34 @@ import db from "@/firebase/firebaseInit";
 export default {
   data() {
     return {
-      // data from user to use at submit
-      userID: "",
-      firstName: "some",
-      lastName: "dude",
-      email: "someDude@email.com",
-      profileImage: image,
-      description:
-        "Hi, my name is Some Dude and I'm a senior software engineer. Welcome to my personal website!",
+        // data from user to use at submit
+        userID: "",
+        firstName: "some",
+        lastName: "dude",
+        email: "someDude@email.com",
+        profileImage: image,
+        description:
+            "Hi, my name is Some Dude and I'm a senior software engineer. Welcome to my personal website!",
 
-      // data used in ui actions
-      passwordShowing: true,
-      snackbarUserUpdated: false,
+        // data used in ui actions
+        passwordShowing: true,
+        snackbarUserUpdated: false,
 
-      //user ID
-      userID: "",
+        //picture preview
+        uploadValue: 0,
+        picture: null,
+        imageData: '',
 
-      // validation rules
-      nameRules: [(n) => !!n || "this field is required"],
-      emailRules: [
-        (e) =>
-          /^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+\.[a-zA-Z0-9]+$/.test(e) ||
-          "email must have a valid format",
-      ],
+        //user ID
+        userID: "",
+
+        // validation rules
+        nameRules: [(n) => !!n || "this field is required"],
+        emailRules: [
+            (e) =>
+            /^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+\.[a-zA-Z0-9]+$/.test(e) ||
+            "email must have a valid format",
+        ],
     };
   },
   computed: {
@@ -125,6 +131,8 @@ export default {
       this.$router.push("/login");
     },
 
+    
+
     submitUserUpdateForm() {
       if (this.$refs.userUpdateForm.validate()) {
         console.log(
@@ -138,6 +146,27 @@ export default {
         );
       }
     },
+
+    previewImage(event, img) {
+        this.uploadValue = 0;
+        this.picture = null;
+        this.imageData = event.target.files[0];
+        this.onUpload();
+    },
+
+    onUpload() {
+        this.picture = null;
+        const storageRef = firebase.storage().ref(`profilePictures/${this.userID}.jpg`).put(this.imageData);
+        storageRef.on('state_changed', snapshot => {
+            this.uploadValue = (snapshot.bytesTransferred/snapshot.totalBytes) * 100;
+        }, error=>{console.log(error.message)},
+        () => {
+            this.uploadValue = 100;
+            storageRef.snapshot.ref.getDownloadURL().then(url => {
+                this.picture = url;
+            });
+        });
+    }, 
 
     fetchCurrentUserData() {
       db.collection("users")
