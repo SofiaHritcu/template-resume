@@ -153,22 +153,22 @@ export default {
         ],
         githubRules: [
           (e) =>
-          /^(http(s?):\/\/)?(www\.)?github\.([a-z])+\/([A-Za-z0-9]{1,})+\/?$/i.test(e) ||
+          /^$|^(http(s?):\/\/)?(www\.)?github\.([a-z])+\/([A-Za-z0-9]{1,})+\/?$/i.test(e) ||
           "link must be valid"
         ],
         youtubeRules: [
           (e) =>
-          /^https?:\/\/(www\.)?youtube\.com\/(channel\/UC[\w-]{21}[AQgw]|(c\/|user\/)?[\w-]+)$/.test(e) ||
+          /^$|^https?:\/\/(www\.)?youtube\.com\/(channel\/UC[\w-]{21}[AQgw]|(c\/|user\/)?[\w-]+)$/.test(e) ||
           "link must be valid"
         ],
         instagramRules: [
           (e) =>
-          /(?:(?:http|https):\/\/)?(?:www.)?(?:instagram.com|instagr.am|instagr.com)\/(\w+)/igm.test(e) ||
+          /^$|(?:(?:http|https):\/\/)?(?:www.)?(?:instagram.com|instagr.am|instagr.com)\/(\w+)/igm.test(e) ||
           "link must be valid"
         ],
         linkedinRules: [
            (e) =>
-          /((https?:\/\/)?((www|\w\w)\.)?linkedin\.com\/)((([\w]{2,3})?)|([^\/]+\/(([\w|\d-&#?=])+\/?){1,}))$/.test(e) ||
+          /^$|((https?:\/\/)?((www|\w\w)\.)?linkedin\.com\/)((([\w]{2,3})?)|([^\/]+\/(([\w|\d-&#?=])+\/?){1,}))$/.test(e) ||
           "link must be valid"
         ]
     };
