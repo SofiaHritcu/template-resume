@@ -24,7 +24,7 @@
           dense
           :counter="150"
           color="#85a3e0"
-          v-model="phrase"
+          v-model="roleDescription"
           prepend-inner-icon="mdi-pencil-outline"
           class="description ml-3"
         ></v-textarea>
@@ -41,7 +41,7 @@
           dense
           :counter="120"
           color="#85a3e0"
-          :value="skillsDescription"
+          v-model="skillsDescription"
           prepend-inner-icon="mdi-brain"
           class="description ml-3"
         ></v-textarea>
@@ -218,7 +218,7 @@ export default {
 
       //1. about-card
       role: "",
-      phrase: "",
+      roleDescription: "",
 
       //2. skills
       skillsDescription: "",
@@ -237,6 +237,7 @@ export default {
         { order: 11, name: "php", image: "php.png" },
         { order: 12, name: "git", image: "git.png" },
       ],
+      skills: [],
       particularSkills: [],
       selectedSkills: [],
       particularAddedSkills: [],
@@ -313,15 +314,24 @@ export default {
         return generalSkillsName;
     },
 
-    submitUpdateAboutPage() {
+   submitUpdateAboutPage() {
         console.log("updating user " , this.userID 
                         , " role " , this.role 
                         , " phrase" , this.phrase 
                         , " technical skills " , this.selectedSkills
                         , " particular skills " , this.particularSkills
                         , "learnings " , this.learnings);
-        let skills = this.getGeneralSkills();
-        console.log(skills);
+        this.skills = this.getGeneralSkills();
+        var docRef = db.collection('portofolios').doc(this.userID);
+        docRef.set({
+            role: this.role,
+            roleDescription: this.roleDescription,
+            skillDescription: this.skillsDescription,
+            generalSkills: this.skills,
+            particularSkills: this.particularSkills,
+            currentlyLearning: this.learnings
+        });
+        
         // selectedSkills - [0,1,3,4] ->  generalSkills
     }
   },
