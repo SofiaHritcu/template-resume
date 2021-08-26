@@ -1,19 +1,18 @@
 <template>
   <v-app>
-    <router-view to="/login">Login</router-view>
+    <AddResume></AddResume>
   </v-app>
 </template>
 
 <script>
-import Login from './views/Login.vue';
-import Home from './views/Home.vue';
-
-
+import AddResume from "./views/AddResume.vue";
+import Resume from "./views/Resume.vue";
 export default {
-  components: { 
-  Login,
-  Home },
-  name: 'App',
+  components: {
+    AddResume,
+    Resume,
+  },
+  name: "App",
   data: () => ({
     //
   }),
