@@ -67,6 +67,7 @@ const routes = [
     name: 'UserManagement',
     component: UserManagement
   }
+  
 ]
 
 const router = new VueRouter({
