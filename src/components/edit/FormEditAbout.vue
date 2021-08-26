@@ -186,7 +186,6 @@
           </v-chip-group>
         </v-col>
       </v-row>
-      </v-row>
       <v-row>
            <v-btn
                 color="#85a3e0"
