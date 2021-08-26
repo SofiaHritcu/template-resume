@@ -1,26 +1,41 @@
 <template>
   <v-row>
     <v-col cols="2">
-      <Navbar></Navbar>
+      <Navbar :onEditResume="true"></Navbar>
     </v-col>
     <v-col cols="10">
       <v-container fluid class="containerr justify-content-center">
         <v-card class="cardd ">
-          <h1>Add/Change Your CV</h1>
+          <v-row class="text-center" justify="center">
+                <p class="my-5 text-h4 font-weight-light">Edit your resume</p>
+            </v-row>
+            <v-row class="text-center" justify="center">
+                <p class="my-2 text-overline font-weight-light">
+                  Here you can upload a document for your online
+                  <span class="text-overline font-weight-normal"  style="color: #3366cc">"RESUME"</span> 
+                </p>
+                <p class="my-2 text-overline font-weight-light"> 
+                  BUILD YOUR 
+                  <span class="text-overline font-weight-normal"  style="color: #3366cc">"RESUME"</span> 
+                  CAREFULLY! IT IS VERY IMPORTANT!
+                </p>
+          </v-row> 
+          <p class="text-h4 font-weight-thin resume-section" align="start">RESUME</p>
+          <v-divider class="resume-divider my-10"></v-divider>
           <form id="formmm" @submit="Submitt" ref="formm">
             <div class="selectPDF">
               <v-file-input
                 truncate-length="50"
                 type="file"
                 id="image"
-                class="inputt"
+                class="inputt my-10"
                 placeholder="Add your PDF file here"
                 required
                 @change="encodeFileAsURL()"
               ></v-file-input>
             </div>
             <div class="message">
-              <p>Preview:</p>
+              <p class="text-overline font-weight-normal">Preview:</p>
             </div>
             <div class="resume">
               <pdf v-bind:src="pdfFile" class="pdff mr-0"></pdf>
@@ -92,7 +107,6 @@ export default {
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .pdff {
   margin-top: 2%;
@@ -128,5 +142,11 @@ p {
 .btnn {
   float: right;
   margin-bottom: 2vh;
+}
+.resume-section {
+  color: #85a3e0;
+}
+.resume-divider {
+  color: #3366cc;
 }
 </style>
