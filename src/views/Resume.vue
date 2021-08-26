@@ -1,6 +1,6 @@
 <template>
   <body>
-    <div class="starts fixed-top">
+    <div class="starts">
       <Navbar></Navbar>
     </div>
     <div class="resume container">
@@ -41,7 +41,7 @@ export default {
 @media only screen and (max-width: 768px) {
   .resume {
     margin-left: 0px;
-    margin-top: 650px;
+    margin-top: 85px;
   }
 }
 </style>
