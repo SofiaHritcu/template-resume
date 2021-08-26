@@ -11,6 +11,17 @@
         >Close</v-btn
       >
     </v-snackbar>
+    <v-snackbar
+      v-model="snackbarUserNotUpdated"
+      :timeout="3000"
+      top
+      color="red"
+    >
+      <span>Failed to update your profile. Try again.</span>
+      <v-btn color="white" text @click="snackbarUserNotUpdated = false"
+        >Close</v-btn
+      >
+    </v-snackbar>
     <v-avatar size="300" class="avatarProfile">
         <v-img v-bind:src="profileImage"
           max-height="200"
@@ -22,6 +33,7 @@
             hide-input
             accept="image/png, image/jpeg, image/jpg"
             prepend-icon="mdi-camera"
+            v-model="profilePictureChosen"
             @change="previewImage"
         >
         </v-file-input>
@@ -43,24 +55,47 @@
         color="light-blue darken-4"
         class="mx-2"
       ></v-text-field>
+      <v-text-field
+        v-model="gitHubLink"
+        placeholder="eg. github.com/"
+        :rules="githubRules"
+        label="GitHub"
+        color="light-blue darken-4"
+        class="mx-2"
+      ></v-text-field>
+      <v-text-field
+        v-model="linkedInLink"
+        placeholder="eg. linkedin.com/"
+        :rules="linkedinRules"
+        label="LinkedIn"
+        color="light-blue darken-4"
+        class="mx-2"
+      ></v-text-field>
+      <v-text-field
+        v-model="youtubeLink"
+        placeholder="eg. youtube.com/"
+        :rules="youtubeRules"
+        label="YouTube Channel"
+        color="light-blue darken-4"
+        class="mx-2"
+      ></v-text-field>
+      <v-text-field
+        v-model="instagramLink"
+        placeholder="eg. instagram.com/"
+        :rules="instagramRules"
+        label="Instagram"
+        color="light-blue darken-4"
+        class="mx-2"
+      ></v-text-field>
     </v-row>
-    <v-text-field
-      v-model="email"
-      label="email"
-      placeholder="jake@gmail.com"
-      :rules="emailRules"
-      color="light-blue darken-4"
-      class="my-4 mx-5"
-    >
-    </v-text-field>
     <v-textarea
       solo
       dense
       :counter="150"
       color="#85a3e0"
-      :value="description"
+      v-model="description"
       prepend-inner-icon="mdi-pencil-outline"
-      class="description ml-3"
+      class="description ml-3 mt-5"
     ></v-textarea>
     <v-btn
       color="#85a3e0"
@@ -87,19 +122,24 @@ export default {
         userID: "",
         firstName: "some",
         lastName: "dude",
-        email: "someDude@email.com",
         profileImage: image,
         description:
             "Hi, my name is Some Dude and I'm a senior software engineer. Welcome to my personal website!",
+        gitHubLink: '',
+        linkedInLink: '',
+        youtubeLink: '',
+        instagramLink: '',
 
         // data used in ui actions
         passwordShowing: true,
         snackbarUserUpdated: false,
+        snackbarUserNotUpdated: false,
 
         //picture preview
         uploadValue: 0,
-        picture: null,
         imageData: '',
+        profilePictureChosen: null,
+
 
         //user ID
         userID: "",
@@ -111,6 +151,26 @@ export default {
             /^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+\.[a-zA-Z0-9]+$/.test(e) ||
             "email must have a valid format",
         ],
+        githubRules: [
+          (e) =>
+          /^$|^(http(s?):\/\/)?(www\.)?github\.([a-z])+\/([A-Za-z0-9]{1,})+\/?$/i.test(e) ||
+          "link must be valid"
+        ],
+        youtubeRules: [
+          (e) =>
+          /^$|^https?:\/\/(www\.)?youtube\.com\/(channel\/UC[\w-]{21}[AQgw]|(c\/|user\/)?[\w-]+)$/.test(e) ||
+          "link must be valid"
+        ],
+        instagramRules: [
+          (e) =>
+          /^$|(?:(?:http|https):\/\/)?(?:www.)?(?:instagram.com|instagr.am|instagr.com)\/(\w+)/igm.test(e) ||
+          "link must be valid"
+        ],
+        linkedinRules: [
+           (e) =>
+          /^$|((https?:\/\/)?((www|\w\w)\.)?linkedin\.com\/)((([\w]{2,3})?)|([^\/]+\/(([\w|\d-&#?=])+\/?){1,}))$/.test(e) ||
+          "link must be valid"
+        ]
     };
   },
   computed: {
@@ -135,35 +195,40 @@ export default {
 
     submitUserUpdateForm() {
       if (this.$refs.userUpdateForm.validate()) {
-        console.log(
-          "submiting sign up user" +
-            " " +
-            this.firstName +
-            " " +
-            this.lastName +
-            " " +
-            this.email 
-        );
+        var userRef = db.collection('users').doc(this.userID);
+        userRef.update({
+          firstName: this.firstName,
+          lastName: this.lastName,
+          description: this.description,
+          linkedInLink: this.linkedInLink,
+          gitHubLink: this.gitHubLink,
+          youtubeLink: this.youtubeLink,
+          instagramLink: this.instagramLink
+        }).then(() => {
+          this.snackbarUserUpdated = true;
+        }).catch((error) => {
+          console.log(error);
+          this.snackbarUserNotUpdated = true;
+        })
       }
     },
 
     previewImage(event, img) {
         this.uploadValue = 0;
         this.picture = null;
-        this.imageData = event.target.files[0];
+        // this.imageData = event.target.files[0];
         this.onUpload();
     },
 
     onUpload() {
-        this.picture = null;
-        const storageRef = firebase.storage().ref(`profilePictures/${this.userID}.jpg`).put(this.imageData);
+        const storageRef = firebase.storage().ref(`profilePictures/${this.userID}.jpg`).put(this.profilePictureChosen);
         storageRef.on('state_changed', snapshot => {
             this.uploadValue = (snapshot.bytesTransferred/snapshot.totalBytes) * 100;
         }, error=>{console.log(error.message)},
         () => {
             this.uploadValue = 100;
             storageRef.snapshot.ref.getDownloadURL().then(url => {
-                this.picture = url;
+                this.profileImage = url;
             });
         });
     }, 
@@ -178,6 +243,10 @@ export default {
             this.lastName = doc.data().lastName;
             this.email = doc.data().email;
             this.description = doc.data().description;
+            this.linkedInLink = doc.data().linkedInLink;
+            this.gitHubLink = doc.data().gitHubLink;
+            this.youtubeLink = doc.data().youtubeLink;
+            this.instagramLink = doc.data().instagramLink;
             var storageRef = firebase
               .storage()
               .ref(`profilePictures/${this.userID}.jpg`)
