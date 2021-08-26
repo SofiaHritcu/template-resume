@@ -119,7 +119,12 @@ export default {
                         db.collection('users').doc(this.userID).set({
                             firstName: this.firstName,
                             lastName: this.lastName,
-                            email: this.email
+                            email: this.email,
+                            description: '',
+                            linkedInLink: '',
+                            gitHubLink: '',
+                            youtubeLink: '',
+                            instagramLink: ''
                         }).then(() => {
                             this.snackbarUserAdded = true
                             setTimeout(() => {

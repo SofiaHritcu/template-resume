@@ -15,7 +15,7 @@
 <script>
 
 import Home_introduction_section from '../../src/components/home/home-introduction-section.vue'
-import Home_technologies from '../../src/components/home/home-technologies'
+import Home_technologies from '../../src/components/home/home-technologies.vue'
 import Home_slider_projects from '../../src/components/home/home-slider-projects'
 import Home_learning from '../../src/components/home/home-learning.vue'
 import Navbar from '../components/Navbar.vue'
