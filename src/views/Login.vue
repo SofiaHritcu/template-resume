@@ -69,6 +69,9 @@
 <script>
 import AvatarUser from '../components/login/AvatarUser.vue';
 import FormLogin from '../components/login/FormLogin.vue'
+import firebase from "firebase";
+import db from "@/firebase/firebaseInit";
+
 export default {
     name: 'Login',
 
@@ -78,17 +81,7 @@ export default {
     },
     data() {
         return {
-            users: { 
-                user1: { firstName: 'user1', lastName: 'lastName 1', role:'developer', uid: '5XdfgY32XNNY', image: 'https://icon-library.com/images/manager-512.png'}, 
-                user2: { firstName: 'user2', lastName: 'lastName 2', role:'developer', uid: '5XdfgY32XNNY', image: 'https://cdn.iconscout.com/icon/premium/png-512-thumb/businessman-10-132143.png'  }, 
-                user3: { firstName: 'user3', lastName: 'lastName 3', role:'developer', uid: '5XdfgY32XNNY', image: 'https://cdn.iconscout.com/icon/premium/png-512-thumb/employee-417-789460.png'},
-                user4: { firstName: 'user4', lastName: 'lastName 4', role:'developer', uid: '5XdfgY32XNNY', image: 'https://cdn.iconscout.com/icon/free/png-512/avatar-373-456325.png'  },
-                user5: { firstName: 'user5', lastName: 'lastName 5', role:'developer', uid: '5XdfgY32XNNY', image: 'https://image.flaticon.com/icons/png/512/194/194938.png'  },
-                user6: { firstName: 'user6', lastName: 'lastName 6', role:'developer', uid: '5XdfgY32XNNY', image: 'https://crisstalinconstructii.ro/wp-content/uploads/2021/03/baiat.png'  },
-                // user7: { firstName: 'user7', lastName: 'lastName 7', role:'developer', uid: '5XdfgY32XNNY'  },
-                // user8: { firstName: 'user8', lastName: 'lastName 8', role:'developer', uid: '5XdfgY32XNNY'  },
-                // user9: { firstName: 'user9', lastName: 'lastName 9', role:'developer', uid: '5XdfgY32XNNY'  },
-            },
+            users: [],
             columnsUsers: 3
         };
     },
@@ -110,6 +103,32 @@ export default {
             }
             return columns;
         }
+    },
+    mounted() {
+        db.collection("users").get().then(async (usersFetched) => {
+            usersFetched.forEach( async (userFetched) => {
+                var firstName = userFetched.data().firstName;
+                var lastName = userFetched.data().lastName;
+                var uid = userFetched.id;
+                var profileImage = await  firebase
+                                    .storage()
+                                    .ref(`profilePictures/${uid}.jpg`)
+                                    .getDownloadURL();
+                var portfolioFetched = await db.collection("portofolios").doc(uid).get();
+                var role = '';
+                if (portfolioFetched.data() !== undefined) {
+                    role = portfolioFetched.data().role;
+                };
+                this.users.push({ 
+                    firstName: firstName, 
+                    lastName: lastName, 
+                    role: role, 
+                    uid: uid, 
+                    image: profileImage
+                    }, 
+                );
+            });
+        });
     }
 }
 </script>
