@@ -32,7 +32,8 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .pdff {
-  width: 80%;
+  /* testing with 90% width */
+  width: 90%;
 }
 .resume {
   margin-left: 330px;

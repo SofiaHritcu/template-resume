@@ -27,7 +27,7 @@
           type="button"
           class="x"
           id="xi"
-          onclick="document.getElementById('sidebar').style.height = '85px'; document.getElementById('hamburger').style.display = 'block'; document.getElementById('xi').style.display = 'none';"
+          onclick="document.getElementById('sidebar').style.height = '70px'; document.getElementById('hamburger').style.display = 'block'; document.getElementById('xi').style.display = 'none';"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -419,9 +419,12 @@ hr {
   .sidebar {
     height: auto;
     width: 100vw;
-    overflow-y: auto;
+    overflow-y: hidden;
     position: absolute;
-    height: 85px;
+    z-index: 10;
+    height: 70px;
+    padding-top: 15px;
+    padding-bottom: 15px;
   }
   .template {
     margin-bottom: px;
