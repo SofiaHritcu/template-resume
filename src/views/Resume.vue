@@ -1,12 +1,12 @@
 <template>
   <v-row>
-    <v-col cols="2">
-      <Navbar></Navbar>
-    </v-col>
-    <v-col cols="10">
+    <div class="col-md-3">
+      <navbar></navbar>
+   </div>
+     <div class="col-md-9 col-12">
       <introduction-resume-section></introduction-resume-section>
       <resume-document></resume-document>
-    </v-col>
+  </div>
   </v-row>
 </template>
 

@@ -1,15 +1,13 @@
 <template>
 <v-row>
-  <v-col cols="2">
+  <div class="col-md-3 ">
     <navbar></navbar>
-  </v-col>
-  <v-col cols="10">
+  </div>
+  <div class="col-md-9 col-12 mt-5 mt-md-0">
     <Introduction_contact_section description_contact="Interested in hiring me for your project or just want to say hi? You can fill in the contact form below or send me an email." />
     <Contact_form />
-  </v-col>
+  </div>
 </v-row>
-
-</div>
 </template>
 
 <script>
