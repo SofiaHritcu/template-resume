@@ -107,14 +107,28 @@
           <v-btn
               large
               color="#85a3e0"
+              :class="[onEditAbout ? 'activeButton' : '']"
+              class="white--text classic-button"
+              @click="editAbout"
+          >
+              <v-icon left color="white">
+                  mdi-account-edit-outline
+              </v-icon>
+              ADD ABOUT ME
+          </v-btn>
+        </div>
+        <div class="my-3 mr-15 d-flex">
+          <v-btn
+              large
+              color="#85a3e0"
               :class="[onEditPortfolio ? 'activeButton' : '']"
               class="white--text classic-button"
               @click="editPortfolio"
           >
               <v-icon left color="white">
-                  mdi-account-edit-outline
+                  mdi-notebook-edit-outline
               </v-icon>
-              Edit my portfolio
+              ADD PORTFOLIO
           </v-btn>
         </div>
         <div class="my-3 ml-6 d-flex">
@@ -158,7 +172,7 @@ import 'firebase/storage'
 import db from '@/firebase/firebaseInit.js'
 
 export default {
-  props: ['onAbout', 'onPortfolio', 'onResume', 'onContact', 'onEditPortfolio', 'onEditProfile'],
+  props: ['onAbout', 'onPortfolio', 'onResume', 'onContact', 'onEditAbout', 'onEditPortfolio', 'onEditProfile'],
   data() {
     return {
       userID:'',
@@ -199,8 +213,11 @@ export default {
         this.isLongName = false;
       }
     },
+    editAbout() {
+      this.$router.push('/editabout')
+    },
     editPortfolio() {
-      this.$router.push('/edit')
+      this.$router.push('/editportfolio')
     },
     settings() {
       this.$router.push('/settings')
