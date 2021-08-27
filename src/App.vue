@@ -7,6 +7,7 @@
 <script>
 import Login from './views/Login.vue';
 import Home from './views/Home.vue';
+import AddResume from './views/EditResume.vue';
 
 
 export default {

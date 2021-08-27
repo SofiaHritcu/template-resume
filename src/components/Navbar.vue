@@ -217,6 +217,20 @@
               ADD PORTFOLIO
           </v-btn>
         </div>
+        <div class="my-3 mr-15 d-flex">
+          <v-btn
+              large
+              color="#85a3e0"
+              :class="[onEditResume ? 'activeButton' : '']"
+              class="white--text classic-button"
+              @click="editResume"
+          >
+              <v-icon left color="white">
+                  mdi-file-document-edit
+              </v-icon>
+              ADD RESUME
+          </v-btn>
+        </div>
         <div class="my-3 ml-6 d-flex">
           <v-btn
               large
@@ -255,7 +269,7 @@ import firebase from "firebase";
 import "firebase/storage";
 import db from "@/firebase/firebaseInit.js";
 export default {
-  props: ['onAbout', 'onPortfolio', 'onResume', 'onContact', 'onEditAbout', 'onEditPortfolio', 'onEditProfile'],
+  props: ['onAbout', 'onPortfolio', 'onResume', 'onContact', 'onEditAbout', 'onEditPortfolio','onEditResume', 'onEditProfile'],
   data() {
     return {
       userID: "",
@@ -300,6 +314,9 @@ export default {
     },
     editPortfolio() {
       this.$router.push('/editportfolio')
+    },
+    editResume() {
+      this.$router.push('/editresume')
     },
     settings() {
       this.$router.push('/settings')
