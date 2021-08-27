@@ -328,6 +328,7 @@ export default {
       }).catch((error) => {
         // An error happened.
       });
+
     },
     fetchCurrentUserData() {
       db.collection('users').doc(this.userID).get()

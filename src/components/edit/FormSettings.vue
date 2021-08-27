@@ -256,12 +256,12 @@ export default {
               });
           } else {
             console.log("No such document!");
-            this.$router.push("/login");
+            this.loginRedirect();
           }
         })
         .catch((error) => {
           console.log("Error getting document: ", error);
-          this.$router.push("/login");
+          this.loginRedirect();
         });
     },
   },
