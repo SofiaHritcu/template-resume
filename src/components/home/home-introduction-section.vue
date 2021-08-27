@@ -18,12 +18,6 @@
         </div>
         <br>
         <br>
-        <div class="what-i-do pl-5 mb-4 mt-5">
-            <h3>Technical Skills</h3>
-        </div>
-        <div class="skills_description pb-5">
-            <p>{{ skillsDescription }}</p>
-        </div>
     </div>
 </div>
 </template>
@@ -38,7 +32,6 @@ export default {
       job_name:String,
       job_description:String,
       picture_user:String,
-      skillsDescription:String
     }
 }
 </script>

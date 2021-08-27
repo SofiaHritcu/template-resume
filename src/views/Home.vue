@@ -10,9 +10,14 @@
         :lastName="lastName"
         :job_name="role"
         :job_description="roleDescription"
-        :skillsDescription="skillDescription"
       />
       <div class="overview-section p-3 p-lg-5">
+        <div class="what-i-do pl-5 mb-4 mt-5">
+            <h3>Technical Skills</h3>
+        </div>
+        <div class="skills_description pb-5">
+            <p>{{ skillsDescription }}</p>
+        </div>
         <div class="container">
           <!-- Skills with image section -->
           <div class="row pt-5">
