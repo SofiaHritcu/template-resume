@@ -63,7 +63,7 @@
           v-model="selectedSkills"
           column
           multiple
-          class="skills-group my-5"
+          class="skills-group my-5 overflow-list"
           @change="addedSkill"
         >
           <v-chip
@@ -71,7 +71,7 @@
             outlined
             v-for="skill in generalSkills"
             :key="skill.name"
-            class="skill-chip"
+            class="skill-chip overflow-list"
           >
             <v-avatar left>
               <v-img
@@ -414,5 +414,9 @@ export default {
 }
 .particular-skill-form {
   width: 90% !important;
+}
+/* testing icons section responsive style */
+.v-chip-group--column .v-slide-group__content{
+  overflow-y: auto !important;
 }
 </style>

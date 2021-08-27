@@ -1,12 +1,12 @@
 <template>
   <v-row>
-    <v-col cols="2">
+    <v-col cols="0" md="4" lg="3">
       <navbar :onEditAbout="true"></navbar>
     </v-col>
-    <v-col cols="10"  align="center" justify="center">
+    <v-col cols="12" md="8" lg="9"  align="center" justify="center">
         <v-container>
             <v-row class="text-center" justify="center">
-                <p class="my-5 text-h4 font-weight-light">Edit your portfolio</p>
+                <p class="my-5 pt-4 pt-md-0 text-h4 font-weight-light">Edit your portfolio</p>
             </v-row>
             <v-row class="text-center" justify="center">
                 <p class="my-2 text-overline font-weight-light">
@@ -42,5 +42,8 @@ export default {
 <style>
 .form-settings {
     width: 70%;
+}
+.v-slide-group__content{
+  overflow-y: auto !important;
 }
 </style>

@@ -247,6 +247,14 @@ textarea:focus {
     border: 1px solid rgba(81, 203, 238, 1);
 }
 
+@media only screen and (max-width: 991px) {
+    .login-box {
+
+        width: 450px;
+
+    }
+}
+
 @media only screen and (max-width: 640px) {
     .login-box {
 

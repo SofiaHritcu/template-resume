@@ -1,8 +1,8 @@
 <template>
 <!-- home slider -->
-<div>
+<div class="p-3 p-lg-5">
 
-    <div class="container pl-5 mb-4 p-3 p-lg-5 pt-0">
+    <div class="container pl-5 mb-4 pt-0">
         <div class=" what-i-do">
             <h3>My projects </h3>
         </div>

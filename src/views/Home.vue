@@ -1,9 +1,9 @@
 <template>
   <v-row>
-    <v-col cols="3">
+    <v-col cols="0" md="5" lg="3">
       <navbar :onAbout="true"></navbar>
     </v-col>
-    <v-col cols="9">
+    <v-col cols="12" md="7" lg="9">
       <Home_introduction_section
         :picture_user="pictureLink"
         :firstName="firstName"
