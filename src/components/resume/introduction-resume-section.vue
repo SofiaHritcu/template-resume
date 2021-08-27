@@ -46,7 +46,6 @@ export default {
         if (!user) {
           return false;
         } else {
-          this.userID = user.uid;
           return true;
         }
       });
@@ -82,11 +81,11 @@ export default {
     }
   },
   created() {
+    this.userID = this.$route.params.userID;
     firebase.auth().onAuthStateChanged((user) => {
       if (!user) {
         return false;
       } else {
-        this.userID = user.uid;
         console.log(this.userID);
         firebase
           .storage()
