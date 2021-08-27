@@ -87,7 +87,7 @@
         <p class="text-overline font-weight-thin my-10" align="center">
           add particular skills
         </p>
-        <v-col cols="6">
+        <v-col cols="6" class="my-2">
           <v-form ref="particularSkillsForm">
             <v-row
               class="particular-skill-form"
@@ -121,20 +121,23 @@
           </v-form>
         </v-col>
         <v-col cols="6">
-
             <div>
-                <v-card outlined v-for="particularSkill in particularSkills" :key="particularSkill.name" class="my-5">
-                     <v-avatar left>
+                <v-card outlined v-for="particularSkill in particularSkills" :key="particularSkill.name" class="mb-5">
+                    <v-row align="center" justify="center">
+                      <v-col cols="5" class="ml-10">
+                      <v-img left>
                         <v-img
                         :src="require('@/assets/' + 'particularSkill.png')"
-                        width="100"
+                        width="100" height="200"
                         ></v-img>
-                    </v-avatar>
-                    <v-card-title>
+                      </v-img>
+                    </v-col>
+                    <v-col cols="3" class="mr-10 ma-10" >
                         <p class="text-overline"> {{ particularSkill.name }} </p>
-                    </v-card-title>
-                   
-                    <v-card-subtitle> {{ particularSkill.description }} </v-card-subtitle>
+                        <v-card-subtitle> {{ particularSkill.description }} </v-card-subtitle>
+                    </v-col>
+                    
+                    </v-row>
                 </v-card>
             </div>
         </v-col>
@@ -146,7 +149,7 @@
         <p class="text-overline font-weight-thin" align="center">
           add  what you're currently learning
         </p>
-        <v-col cols="6">
+        <v-col cols="6" class="my-2">
           <v-form ref="learningForm">
             <v-row
               class="learning-form"
@@ -174,27 +177,21 @@
           </v-form>
         </v-col>
         <v-col cols="6">
-          <v-chip-group
-            v-model="learningsAdded"
-            column
-            multiple
-            class="skills-group my-5"
-          >
-            <v-chip
-              filter
-              outlined
-              v-for="learning in learnings"
-              :key="learning.name"
-            >
-              <v-avatar left>
-                <v-img
-                  :src="require('@/assets/' + 'learning.png')"
-                  width="50"
-                ></v-img>
-              </v-avatar>
-              {{ learning.name }} 
-            </v-chip>
-          </v-chip-group>
+          <v-card outlined v-for="learning in learnings" :key="learning.name" class="mb-5">
+                    <v-row align="center" justify="center">
+                      <v-col cols="5" class="ml-10">
+                      <v-img left
+                        :src="require('@/assets/' + 'learning.png')"
+                        width="150" height="150"
+                      ></v-img>
+                    </v-col>
+                    <v-col cols="3" class="mr-10 ma-10" >
+                        <p class="text-overline"> {{ learning.name }}  </p>
+                    </v-col>
+                    
+                    </v-row>
+                </v-card>
+          
         </v-col>
       </v-row>
       <v-row>

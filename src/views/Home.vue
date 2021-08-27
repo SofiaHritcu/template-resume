@@ -1,7 +1,7 @@
 <template>
   <v-row>
     <v-col cols="3">
-      <navbar :onAbout="true"></navbar>
+      <navbar></navbar>
     </v-col>
     <v-col cols="9">
       <Home_introduction_section

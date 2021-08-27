@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Resume from '../views/Resume.vue'
+import Projects from '../views/Projects.vue'
 import Contact from '../views/Contact.vue'
 import EditAbout from '../views/EditAbout.vue'
 import EditPortfolio from '../views/EditPortfolio.vue'
@@ -27,6 +28,12 @@ const routes = [
     path: '/resume/:userID',
     name: 'Resume',
     component: Resume,
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/projects/:userID',
+    name: 'Projects',
+    component: Projects,
     meta: { requiresAuth: true }
   },
   {

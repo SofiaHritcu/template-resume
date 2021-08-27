@@ -93,7 +93,7 @@
               params: { userID: userID },
             }"
             :class="[
-              onResume ? 'activeClass' : '',
+              onAbout ? 'activeClass' : '',
               'section-link',
               'text-heading-5',
               'font-weight-light',
@@ -120,8 +120,11 @@
               d="M1 6v-.5a.5.5 0 0 1 1 0V6h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V9h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 2.5v.5H.5a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1H2v-.5a.5.5 0 0 0-1 0z"
             />
           </svg>
-          <a
-            href="/portfolio"
+          <router-link
+            v-bind:to="{
+              name: 'Projects',
+              params: { userID: userID },
+            }"
             :class="[
               onPortfolio ? 'activeClass' : '',
               'section-link',
@@ -129,8 +132,9 @@
               'font-weight-light',
               'my-2',
             ]"
-            >Portfolio</a
           >
+            Projects
+          </router-link>
         </div>
         <div class="linkss d-flex">
           <svg
@@ -188,7 +192,7 @@
               params: { userID: userID },
             }"
             :class="[
-              onResume ? 'activeClass' : '',
+              onContact ? 'activeClass' : '',
               'section-link',
               'text-heading-5',
               'font-weight-light',
@@ -287,10 +291,10 @@ import "firebase/storage";
 import db from "@/firebase/firebaseInit.js";
 export default {
   props: [
-    "onAbout",
-    "onPortfolio",
-    "onResume",
-    "onContact",
+    // "onAbout",
+    // "onPortfolio",
+    // "onResume",
+    // "onContact",
     "onEditAbout",
     "onEditPortfolio",
     "onEditResume",
@@ -310,6 +314,7 @@ export default {
       linkedInLink: "",
       gitHubLink: "",
       instagramLink: "",
+      
     };
   },
   computed: {
@@ -329,11 +334,27 @@ export default {
         }
       });
     },
+    onAbout() {
+      let routeName = this.$route.name === "Home";
+      console.log(this.$route.name);
+      return this.$route.name === "Home"
+    },
+    onPortfolio() {
+      let routeName = this.$route.name === "Projects";
+      return this.$route.name === "Projects"
+    },
+    onResume() {
+      let routeName = this.$route.name === "Resume";
+      return this.$route.name === "Resume"
+    },
+    onContact() {
+      let routeName = this.$route.name === "Contact";
+      return this.$route.name === "Contact"
+    },
+    
   },
   methods: {
     longName() {
-      console.log(this.name);
-      console.log(this.name.length > 12);
       if (this.name.length > 12) {
         this.isLongName = true;
       } else {
