@@ -12,19 +12,17 @@
 
 <script>
 import Navbar from "../components/Navbar.vue";
-import IntroductionResumeSection from '../components/resume/introduction-resume-section.vue';
-import ResumeDocument from '../components/resume/ResumeDocument.vue';
+import IntroductionResumeSection from "../components/resume/introduction-resume-section.vue";
+import ResumeDocument from "../components/resume/ResumeDocument.vue";
 
 export default {
   components: {
     Navbar,
     IntroductionResumeSection,
     ResumeDocument,
-  }
+  },
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-
-</style>
+<style scoped></style>

@@ -3,6 +3,17 @@
     <p class="text-h4 font-weight-thin edit-section" align="start">ABOUT</p>
     <v-divider class="edit-divider"></v-divider>
     <v-form ref="aboutUpdateForm">
+      <v-snackbar
+        v-model="snackbarPortfolioUpdated"
+        :timeout="3000"
+        top
+        color="#85a3e0"
+      >
+        <span>Marvelous! You've updated your portfolio! It's looking great</span>
+        <v-btn color="white" text @click="snackbarPortfolioUpdated = false"
+          >Close</v-btn
+        >
+      </v-snackbar>
       <v-row class="about-card">
         <v-text-field
           v-model="role"
@@ -215,6 +226,9 @@ export default {
       // data from user to use at submit
       userID: "",
 
+      // ui needed
+      snackbarPortfolioUpdated: false,
+
       //1. about-card
       role: "",
       roleDescription: "",
@@ -330,7 +344,7 @@ export default {
             particularSkills: this.particularSkills,
             currentlyLearning: this.learnings
         });
-        
+        this.snackbarPortfolioUpdated = true;
         // selectedSkills - [0,1,3,4] ->  generalSkills
     }
   },

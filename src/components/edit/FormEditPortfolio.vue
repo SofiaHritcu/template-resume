@@ -35,24 +35,43 @@
           color="#85a3e0"
           v-model="description"
           prepend-inner-icon="mdi-pencil-outline"
-          class="description my-10"
+          class="description my-3"
         ></v-textarea>
+        <p class="text-overline font-weight-thin" align="center">
+          add a suggestive image for your project
+        </p>
+        <v-row
+          justify="center"
+          align="center"
+          class="my-5 mr-1 ml-1 preview-project-image"
+        >
+          <v-img v-bind:src="projectImage" max-height="300" max-width="300">
+          </v-img>
+        </v-row>
+        <v-row justify="center" class="profile-input my-2">
+          <v-file-input
+            hide-input
+            accept="image/png, image/jpeg, image/jpg"
+            prepend-icon="mdi-camera"
+            v-model="projectPictureChosen"
+            @change="previewImage"
+          >
+          </v-file-input>
+        </v-row>
       </v-row>
       <v-row>
-           <v-btn
-                color="#85a3e0"
-                class="white--text classic-button"
-                @click="submitAddProject"
-                >
-                <v-icon left color="white">
-                    mdi-book-check-outline
-                </v-icon>
-                Add project
-            </v-btn>
+        <v-btn
+          color="#85a3e0"
+          class="white--text classic-button"
+          @click="submitAddProject"
+        >
+          <v-icon left color="white">
+            mdi-book-check-outline
+          </v-icon>
+          Add project
+        </v-btn>
       </v-row>
     </v-form>
-
-    
 
     <v-card
       :class="[
@@ -65,7 +84,7 @@
       v-for="(project, index) in projects"
       :key="project.title"
     >
-      <v-img :src="require ('@/assets/' + 'project.png')" height="200px"></v-img>
+      <v-img :src="project.image"></v-img>
       <v-card-title>
         {{ project.title }}
       </v-card-title>
@@ -93,6 +112,7 @@
 <script>
 import firebase from "firebase";
 import db from "@/firebase/firebaseInit";
+import projectImg from "../../assets/project.png";
 
 export default {
   data() {
@@ -102,21 +122,16 @@ export default {
       title: "",
       description: "",
 
+      // project image
+      projectImage: projectImg,
+
+      //picture preview
+      uploadValue: 0,
+      imageData: "",
+      projectPictureChosen: null,
+
       // projects data
-      projects: [
-        {
-          title: "title1",
-          description:
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, sed ullam. Esse est illum id, quos aperiam natus dolores rem sunt inventore eaque eius laudantium ad, vel a veniam labore!",
-          image: ''
-        },
-        {
-          title: "title2",
-          description:
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, sed ullam. Esse est illum id, quos aperiam natus dolores rem sunt inventore eaque eius laudantium ad, vel a veniam labore!",
-          image:""
-        },
-      ],
+      projects: [],
 
       // ui needed data
       show: false,
@@ -125,7 +140,7 @@ export default {
       // validation rules
       titleRules: [
         (t) =>
-          /^[a-zA-Z0-9_.-]*$/.test(t) ||
+          (!!t && /^[a-zA-Z0-9_. -]*$/.test(t)) ||
           "title can contain only letters, digits  or . - _ ",
       ],
     };
@@ -148,12 +163,55 @@ export default {
       this.$router.push("/login");
     },
 
-    submitAddProject() {
-        if(this.$refs.editPortfolioForm.validate()){
-            this.projects.push({title: this.title, description: this.description, image: this.image});
-            this.$refs.editPortfolioForm.reset();
-            this.snackbarPortfolioUpdated = true;
+    previewImage(event, img) {
+      this.onUpload();
+    },
+
+    onUpload() {
+      var time = new Date().getTime();
+      const storageRef = firebase
+        .storage()
+        .ref(`projectPictures/${time + "_" + this.userID}.jpg`)
+        .put(this.projectPictureChosen);
+      storageRef.on(
+        "state_changed",
+        (snapshot) => {
+          this.uploadValue =
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        },
+        (error) => {
+          console.log(error.message);
+        },
+        () => {
+          this.uploadValue = 100;
+          storageRef.snapshot.ref.getDownloadURL().then((url) => {
+            this.projectImage = url;
+          });
         }
+      );
+    },
+
+    submitAddProject() {
+      if (this.$refs.editPortfolioForm.validate()) {
+        this.projects.push({
+          title: this.title,
+          description: this.description,
+          image: this.projectImage,
+        });
+
+        var docRef = db.collection("projects").doc();
+        docRef.set({
+          title: this.title,
+          description: this.description,
+          userID: this.userID,
+          image: this.projectImage,
+        });
+
+        this.title = '';
+        this.description = '';
+        this.projectImage = projectImg;
+        this.snackbarPortfolioUpdated = true;
+      }
     },
 
     fetchCurrentUserData() {},
@@ -210,5 +268,12 @@ export default {
   background-color: #f2f2f2;
   border: 1px solid rgba(0, 0, 0, 0.025);
   box-shadow: 0 1rem 3rem rgb(0 0 0 / 18%) !important;
+}
+.preview-project-image {
+  padding: 7%;
+  width: 50% !important;
+  border: 2px solid #3366cc;
+  border-radius: 2%;
+  box-shadow: 0px 0px 0px 8px rgba(214, 224, 245, 1);
 }
 </style>

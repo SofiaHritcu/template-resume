@@ -5,17 +5,19 @@
     <div class="container">
         <div class="row align-items-center">
             <!-- left column (with text) -->
-            <div class="text-section col-xl-7 pb-md-0 pb-4">
-                <h2>{{user_name}}</h2>
+            <div class="text-section col-md-7 pb-md-0 pb-4">
+                <h2>{{ firstName }}  {{ lastName }}</h2>
                 <h3 class="pt-3">{{job_name}}</h3>
                 <p class="pt-3">{{job_description}} </p>
                 <a href="#" class="classic-button">View Resume </a>
             </div>
             <!-- photo column -->
-            <div class="image-section col-xl-5">
-                <img :src="require ('@/assets/' + picture_user )" id="dots-img" alt="Google" />
+            <div class="image-section col-md-5">
+                <img :src="picture_user" />
             </div>
         </div>
+        <br>
+        <br>
     </div>
 </div>
 </template>
@@ -25,7 +27,8 @@ export default {
     name: 'Home_introduction_section',
 
     props:{
-      user_name:String,
+      firstName:String,
+      lastName:String,
       job_name:String,
       job_description:String,
       picture_user:String,
@@ -41,6 +44,27 @@ h4,
 h5 {
     /* font color */
     color: #292929;
+}
+
+.what-i-do {
+    font-size: 2rem;
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+.what-i-do h3 {
+    font-size: 2rem;
+}
+
+.what-i-do:before {
+    content: "";
+    display: inline-block;
+    width: 5px;
+    height: 100%;
+    background: #3366cc;
+    position: absolute;
+    left: 0;
+    top: 0;
 }
 
 .classic-button {
