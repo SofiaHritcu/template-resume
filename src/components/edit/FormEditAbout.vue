@@ -272,6 +272,7 @@ export default {
     isLoggedIn() {
       firebase.auth().onAuthStateChanged((user) => {
         if (!user) {
+          console.log('nu esti logat');
           return false;
         } else {
           this.userID = user.uid;

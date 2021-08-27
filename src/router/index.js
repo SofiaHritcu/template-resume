@@ -18,19 +18,19 @@ Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/home',
+    path: '/home/:userID',
     name: 'Home',
     component: Home,
     meta: { requiresAuth: true }
   },
   {
-    path: '/resume',
+    path: '/resume/:userID',
     name: 'Resume',
     component: Resume,
     meta: { requiresAuth: true }
   },
   {
-    path: '/contact',
+    path: '/contact/:userID',
     name: 'Contact',
     component: Contact,
     meta: { requiresAuth: true }

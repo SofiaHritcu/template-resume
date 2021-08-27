@@ -104,7 +104,7 @@ export default {
               .signInWithEmailAndPassword(this.email, this.password);
             if (authUser.user.emailVerified) {
               console.log("email is verified");
-              this.$router.push("/home");
+              this.$router.push({name: 'Home', params: { userID: authUser.user.uid }});
             } else {
               this.snackbarEmailNotVerified = true;
             }

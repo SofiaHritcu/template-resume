@@ -103,16 +103,14 @@ export default {
     },
 
     async getAllData() {
-      await this.getUserID();
+      this.getUserID();
       this.fetchUserData();
       this.fetchPortofolioData();
     },
 
     getUserID() {
       //trebuie modificata putin functia asta!!
-      firebase.auth().onAuthStateChanged((user) => {
-        this.userID = user.uid;
-      });
+      this.userID = this.$route.params.userID;
     },
 
     async fetchUserData() {
