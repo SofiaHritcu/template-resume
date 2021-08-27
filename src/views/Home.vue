@@ -16,7 +16,7 @@
             <h3>Technical Skills</h3>
         </div>
         <div class="skills_description pb-5">
-            <p>{{ skillsDescription }}</p>
+            <p>{{ skillDescription }}</p>
         </div>
         <div class="container">
           <!-- Skills with image section -->
