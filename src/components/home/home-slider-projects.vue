@@ -9,18 +9,21 @@
     </div>
     <div class="container">
         <b-carousel id="carousel-1" class="carousel-projects" v-model="slide" :interval="5000" controls indicators img-width="1024" img-height="480" style="text-shadow: 1px 1px 2px #333;" @sliding-start="onSlideStart" @sliding-end="onSlideEnd">
-            <b-carousel-slide img-src="https://www.sliit.lk/wp-content/uploads/2017/11/Slider-Background.jpg">
-                <h2>{{project_name}} </h2>
-                <p> {{project_description}}</p>
+            <b-carousel-slide 
+                v-for="project in projects"
+                :key="project.title"
+                :img-src="project.project_background">
+                <h2>{{ project.project_name }} </h2>
+                <p> {{ project.project_description }}</p>
             </b-carousel-slide>
-            <b-carousel-slide caption="Second Slide" img-src="https://www.sliit.lk/wp-content/uploads/2017/11/Slider-Background.jpg"></b-carousel-slide>
-            <b-carousel-slide caption="Third Slide" img-src="https://www.sliit.lk/wp-content/uploads/2017/11/Slider-Background.jpg"></b-carousel-slide>
         </b-carousel>
     </div>
 </div>
 </template>
 
 <script>
+import db from "@/firebase/firebaseInit";
+
 export default {
     name: 'Home_slider_projects',
     props: {
@@ -29,6 +32,8 @@ export default {
     },
     data() {
         return {
+            userID: "",
+            projects: [],
             slide: 0,
             sliding: null
         }
@@ -39,8 +44,41 @@ export default {
         },
         onSlideEnd(slide) {
             this.sliding = false
-        }
-    }
+        },
+        loginRedirect() {
+        this.$router.push("/login");
+        },
+
+        async getAllData() {
+        this.getUserID();
+        this.fetchProjectsData();
+        },
+
+        getUserID() {
+        //trebuie modificata putin functia asta!!
+        this.userID = this.$route.params.userID;
+        },
+
+        fetchProjectsData() {
+        var docRef = db
+            .collection("projects")
+            .where("userID", "==", this.userID)
+            .get()
+            .then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                // doc.data() is never undefined for query doc snapshots
+                this.projects.push({project_name: doc.data().title, project_description: doc.data().description, project_background: doc.data().image});
+            });
+            })
+            .catch((error) => {
+            console.log("Error getting documents: ", error);
+            });
+        },
+    },
+
+    created() {
+        this.getAllData();
+    },
 
 }
 </script>
