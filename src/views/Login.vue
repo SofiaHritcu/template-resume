@@ -156,4 +156,9 @@ export default {
     opacity: 0.5;
 }
 
+@media only screen and (max-width: 991px) {
+    .containerUserColumns {
+        flex-wrap: wrap;
+    }}
+
 </style>
