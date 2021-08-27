@@ -13,19 +13,20 @@
       />
       <div class="overview-section p-3 p-lg-5">
         <div class="what-i-do pl-5 mb-4 mt-5">
-            <h3>Technical Skills</h3>
+          <h3>Technical Skills</h3>
         </div>
         <div class="skills_description pb-5">
-            <p>{{ skillDescription }}</p>
+          <p>{{ skillDescription }}</p>
         </div>
         <div class="container">
-          <!-- Skills with image section -->
           <div class="row pt-5">
             <home-technologies
               v-for="generalSkill in generalSkills"
               :key="generalSkill"
               :skill_title="generalSkill"
             ></home-technologies>
+          </div>
+          <div class="row pt-5">
             <home-particular-skills
               v-for="particularSkill in particularSkills"
               :key="particularSkill"
@@ -39,14 +40,16 @@
         project_name="Proiectul NO1"
         project_description="Cel mai smecher proiect ever"
       />
-      <div class="overview-section p-3 p-lg-5">
-        <div class="what-i-do pl-5 mb-4 mt-5">
-            <h3>Currently Learning</h3>
+      <div class="container pl-5 mb-4 p-3 p-lg-5 ">
+        <div class=" what-i-do">
+          <h3>Learning</h3>
         </div>
-        <div class="container">
-          <div class="row pt-5">
-            <home-learning v-for="currentlyLearning in currentlyLearnings " :key="currentlyLearning" :learning_name="currentlyLearning.name"></home-learning>
-          </div>
+        <div class="row pt-5">
+          <home-learning
+            v-for="currentlyLearning in currentlyLearnings"
+            :key="currentlyLearning"
+            :learning_name="currentlyLearning.name"
+          ></home-learning>
         </div>
       </div>
     </v-col>

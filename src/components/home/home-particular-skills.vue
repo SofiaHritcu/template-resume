@@ -1,6 +1,6 @@
 <template>
   <!-- technologies section (home) -->
-  <div class="row pt-5">
+  <div class="pt-5 skill-cols col-lg-4">
     <div class="technology-col col-xl-4">
       <h4>{{ skill_title }}</h4>
       <p>{{ skill_details }}</p>
