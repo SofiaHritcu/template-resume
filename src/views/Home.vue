@@ -40,6 +40,9 @@
         project_description="Cel mai smecher proiect ever"
       />
       <div class="overview-section p-3 p-lg-5">
+        <div class="what-i-do pl-5 mb-4 mt-5">
+            <h3>Currently Learning</h3>
+        </div>
         <div class="container">
           <div class="row pt-5">
             <home-learning v-for="currentlyLearning in currentlyLearnings " :key="currentlyLearning" :learning_name="currentlyLearning.name"></home-learning>
