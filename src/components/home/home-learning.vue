@@ -1,7 +1,7 @@
 <template>
 <!-- home slider -->
-<div>
-    <div class="container pl-5 mb-4 p-3 p-lg-5 ">
+<div class="p-lg-5">
+    <div class="container pl-5 mb-4 p-3  ">
         <div class=" what-i-do">
             <h3>Learning </h3>
         </div>

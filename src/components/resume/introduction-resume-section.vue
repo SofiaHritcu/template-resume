@@ -1,9 +1,9 @@
 <template>
 <!-- resume introduction -->
-<div class="about-me-section p-3 p-lg-5">
+<div class="about-me-section p-3 p-lg-5 ">
     <div class="container text-center contact-intro ">
-        <div class="text-section pb-md-0 pb-4">
-            <h3>Online Resume</h3>
+        <div class="text-section pb-md-0 pb-4 pt-4 pt-md-0">
+            <h3 class="pt-4 pt-md-0">Online Resume</h3>
         </div>
     </div>
 </div>

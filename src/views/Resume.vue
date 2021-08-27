@@ -1,9 +1,9 @@
 <template>
   <v-row>
-    <div class="col-md-3">
+    <div class="col-xl-2 col-lg-3 col-md-4">
       <navbar></navbar>
    </div>
-     <div class="col-md-9 col-12">
+     <div class="col-xl-10 col-lg-9 col-md-8 col-12 pt-0">
       <introduction-resume-section></introduction-resume-section>
       <resume-document></resume-document>
   </div>

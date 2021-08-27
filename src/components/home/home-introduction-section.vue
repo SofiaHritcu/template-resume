@@ -5,14 +5,14 @@
     <div class="container">
         <div class="row align-items-center">
             <!-- left column (with text) -->
-            <div class="text-section col-md-7 pb-md-0 pb-4">
+            <div class="text-section col-xl-7 pb-md-0 pb-4">
                 <h2>{{user_name}}</h2>
                 <h3 class="pt-3">{{job_name}}</h3>
                 <p class="pt-3">{{job_description}} </p>
                 <a href="#" class="classic-button">View Resume </a>
             </div>
             <!-- photo column -->
-            <div class="image-section col-md-5">
+            <div class="image-section col-xl-5">
                 <img :src="require ('@/assets/' + picture_user )" id="dots-img" alt="Google" />
             </div>
         </div>
