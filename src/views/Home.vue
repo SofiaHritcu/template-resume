@@ -38,6 +38,11 @@
         project_name="Proiectul NO1"
         project_description="Cel mai smecher proiect ever"
       />
+      <div class="container pl-5 mb-4 pt-0 ml-5">
+        <div class=" what-i-do">
+            <h3>Learning</h3>
+        </div>
+    </div>
       <div class="overview-section p-3 p-lg-5">
         <div class="container">
           <div class="row pt-5">
@@ -147,3 +152,27 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.what-i-do {
+    font-size: 2rem;
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+.what-i-do h3 {
+    font-size: 2rem;
+}
+
+.what-i-do:before {
+    content: "";
+    display: inline-block;
+    width: 5px;
+    height: 100%;
+    background: #3366cc;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+</style>
