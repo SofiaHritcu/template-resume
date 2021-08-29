@@ -2,7 +2,9 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Resume from '../views/Resume.vue'
+import Projects from '../views/Projects.vue'
 import Contact from '../views/Contact.vue'
+import Others from '../views/Others.vue'
 import EditAbout from '../views/EditAbout.vue'
 import EditPortfolio from '../views/EditPortfolio.vue'
 import EditResume from '../views/EditResume.vue'
@@ -14,25 +16,58 @@ import "firebase/storage"
 import UserManagement from '../views/UserManagement.vue'
 
 
+
 Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/home',
+    path: '/home/:userID',
     name: 'Home',
     component: Home,
     meta: { requiresAuth: true }
   },
   {
-    path: '/resume',
+    path: '/profile/home/:userID',
+    name: 'ProfileHome',
+    component: Home,
+  },
+  {
+    path: '/profile/resume/:userID',
+    name: 'ProfileResume',
+    component: Resume,
+  },
+  {
+    path: '/profile/contact/:userID',
+    name: 'ProfileContact',
+    component: Contact,
+  },
+  {
+    path: '/profile/projects/:userID',
+    name: 'ProfileProjects',
+    component: Projects,
+  },
+  {
+    path: '/resume/:userID',
     name: 'Resume',
     component: Resume,
     meta: { requiresAuth: true }
   },
   {
-    path: '/contact',
+    path: '/projects/:userID',
+    name: 'Projects',
+    component: Projects,
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/contact/:userID',
     name: 'Contact',
     component: Contact,
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/others/:userID',
+    name: 'Others',
+    component: Others,
     meta: { requiresAuth: true }
   },
   {

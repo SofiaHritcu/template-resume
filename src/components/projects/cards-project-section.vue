@@ -2,33 +2,17 @@
   <!-- contact introduction -->
   <!-- incercare pentru card background-image: -->
   <!-- v-bing:style="{ 'background-image': 'url(' + require('@/assets/') + background}" -->
-  <div class="container">
-    <div class="row justify-content-start">
-      <b-card class="card mb-4 ml-0 mr-0 col-xl-6 img-fluid">
-        <img class="card-img-top" src="../../assets/testImg.jpg" alt="test" />
-        <div class="card-img-overlay">
-          <div class="info">
-            <h1 class="title">{{ project_name }}</h1>
-            <p class="description">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius
-              esse corporis, velit porro impedit laudantium accusamus! Id velit,
-              illum magni rem mollitia blanditiis iste maiores optio ipsa, est
-              dolorem fugit. Lorem ipsum dolor sit amet, consectetur adipisicing
-              elit. Eius esse corporis, velit porro impedit laudantium
-              accusamus! Id velit, illum magni rem mollitia blanditiis iste
-              maiores optio ipsa, est dolorem fugit.
-            </p>
-          </div>
-        </div>
-      </b-card>
-      <div class="card mb-4 ml-0 mr-0 col-xl-6">
-        <div class="info">
-          <h1 class="title">{{ project_name }}</h1>
-          <p class="description">{{ project_description }}</p>
-        </div>
+  <b-card class="card mb-4 ml-1 mr-0 col-xl-6 img-fluid">
+    <img class="card-img-top" :src="project_background" alt="test" />
+    <div class="card-img-overlay">
+      <div class="info">
+        <h3 class="title text-overline font-weight-thin">{{ project_name }}</h3>
+        <p class="description">
+          {{ project_description }}
+        </p>
       </div>
     </div>
-  </div>
+  </b-card>
 </template>
 
 <script>
@@ -37,7 +21,7 @@ export default {
   props: {
     project_name: String,
     project_description: String,
-    background: String,
+    project_background: String,
   },
 };
 </script>
@@ -62,11 +46,16 @@ main {
   background-size: cover;
 }
 
+.v-application .info {
+    background-color: #85a3e0 !important;
+    border-color: #85a3e0 !important;
+}
+
 .info {
   position: relative;
   width: 100%;
   height: 500px;
-  background-color: #fff !important;
+  background-color: #000 !important;
   transform: translateY(100%) translateY(-88px) translateZ(0);
   transition: transform 0.5s ease-out;
 }
@@ -94,7 +83,7 @@ main {
 
 .title {
   margin: 0;
-  padding: 35px;
+  padding: 20px;
   font-size: 30px !important;
   line-height: 1;
   color: white;

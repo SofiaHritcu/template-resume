@@ -121,7 +121,7 @@ export default {
       firebase.storage().ref(`resumes/${this.userID}.pdf`).put(this.resumeChosen);
       this.snackbarResumeUpdated = true;
       this.$refs.formm.reset();
-      this.$router.push('resume'); 
+      this.$router.push({name: 'Resume', params: { userID: this.userID }});
     },
   },
   mounted() {

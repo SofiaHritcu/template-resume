@@ -4,23 +4,11 @@
     <h2>Get In Touch</h2>
     <form @submit.prevent="onFormSubmit">
         <div class="user-box">
-            <input type="text" name="first-name" required="">
-            <label>First name</label>
-        </div>
-         <div class="user-box">
-            <input type="text" name="last-name" required="">
-            <label>Last name</label>
-        </div>
-        <div class="user-box">
-            <input type="email" name="email" required="">
-            <label>Email</label>
-        </div>
-        <div class="user-box">
-            <textarea rows="10" cols="" name="" form="usrform" required="" aria-required="true" placeholder="Enter your message">
+            <textarea rows="10" cols="" v-model="text" form="usrform" required="" aria-required="true" placeholder="Enter your message">
 
             </textarea>
         </div>
-        <a href="#">
+        <a :href="`mailto:${ email }?subject=I saw your profile on MyBriefCase&body=${ text }`">
             <span></span>
             <span></span>
             <span></span>
@@ -32,12 +20,30 @@
 </template>
 
 <script>
+import db from "@/firebase/firebaseInit.js";
 export default {
     name: 'Contact_form',
 
-    props: {
-        description_contact: String,
+    data() {
+        return {
+            email:'',
+            text:''
+        }
     },
+
+    created() {
+        this.getEmail();
+    },
+
+    methods: {
+        getEmail() {
+            var userID = this.$route.params.userID;
+            var emailRef = db.collection('users').doc(userID);
+            emailRef.get().then((doc) => {
+                this.email = doc.data().email;
+            })
+        }
+    }
 }
 </script>
 

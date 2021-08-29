@@ -29,7 +29,7 @@ export default {
     methods: {
         seeUser() {
             console.log('visit user '+this.uid);
-            this.$router.push({path: 'profile', query: { uid: this.uid }}) 
+            this.$router.push({ path: `/profile/home/${this.uid}` }) 
         }
     }
 }

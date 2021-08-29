@@ -1,8 +1,14 @@
 <template>
   <div>
     <div class="pt-5 learning-cols col-lg-3">
+      <div class="image-learning text-center">
+        <img
+          :src="require('@/assets/' +  'currently-learning.png')"
+          alt="skill-to-learn"
+        />
+      </div>
       <div class="title-learning text-center pt-3">
-        <h3>{{ learning_name }}</h3>
+        <h3 class="font-weight-thin text-subtitle">{{ learning_name }}</h3>
       </div>
     </div>
   </div>
@@ -19,8 +25,8 @@ export default {
 
 <style scoped>
 .image-learning img {
-  width: 120px;
-  height: 120px;
+  width: 70px;
+  height: 70px;
   object-fit: contain;
 }
 

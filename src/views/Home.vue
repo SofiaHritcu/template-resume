@@ -1,7 +1,7 @@
 <template>
   <v-row>
     <v-col cols="0" md="5" lg="3">
-      <navbar :onAbout="true"></navbar>
+      <navbar></navbar>
     </v-col>
     <v-col cols="12" md="7" lg="9">
       <Home_introduction_section
@@ -13,13 +13,12 @@
       />
       <div class="overview-section p-3 p-lg-5">
         <div class="what-i-do pl-5 mb-4 mt-5">
-            <h3>Technical Skills</h3>
+          <h3>Technical Skills</h3>
         </div>
         <div class="skills_description pb-5">
-            <p>{{ skillsDescription }}</p>
+          <p>{{ skillDescription }}</p>
         </div>
         <div class="container">
-          <!-- Skills with image section -->
           <div class="row pt-5">
             <home-technologies
               v-for="generalSkill in generalSkills"
@@ -97,16 +96,14 @@ export default {
     },
 
     async getAllData() {
-      await this.getUserID();
+      this.getUserID();
       this.fetchUserData();
       this.fetchPortofolioData();
     },
 
     getUserID() {
       //trebuie modificata putin functia asta!!
-      firebase.auth().onAuthStateChanged((user) => {
-        this.userID = user.uid;
-      });
+      this.userID = this.$route.params.userID;
     },
 
     async fetchUserData() {
