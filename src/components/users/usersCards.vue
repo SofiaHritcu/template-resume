@@ -1,14 +1,10 @@
 <template>
   <!-- users cards section -->
-  <div class="col-sm-4">
+  <div class="col-sm-4" @click="seeUser(userID)">
     <div class="flip-container">
       <div class="flipper">
         <div class="front">
-          <img
-            class="lazyload"
-            :src="image"
-            alt="skill-to-learn"
-          />
+          <img class="lazyload" :src="image" alt="skill-to-learn" />
           <h3 class="pb-2">{{ name }}</h3>
         </div>
         <div
@@ -30,7 +26,16 @@ export default {
     image: String,
     name: String,
     role: String,
+    userID: String
   },
+
+  methods: {
+    seeUser(userID) {
+            console.log('visit user '+userID);
+            this.$router.push({ path: `/profile/${this.userID}` }) 
+        }
+  },
+
 };
 </script>
 

@@ -12,6 +12,7 @@
             :role="user.role"
             :image="user.image"
             :name="user.firstName + ' ' + user.lastName"
+            :userID="user.uid"
           />
         </v-row>
       </div>
@@ -31,6 +32,7 @@ export default {
 
   data() {
     return {
+      userID: "",
       users: [],
     };
   },
@@ -40,33 +42,45 @@ export default {
     UsersIntroduction,
     UsersCards,
   },
+
   mounted() {
+    firebase.auth().onAuthStateChanged((user) => {
+      if (!user) {
+        return false;
+      } else {
+        this.userID = user.uid;
+        this.fetchCurrentUserData();
+        return true;
+      }
+    });
     db.collection("users")
       .get()
       .then(async (usersFetched) => {
         usersFetched.forEach(async (userFetched) => {
-          var firstName = userFetched.data().firstName;
-          var lastName = userFetched.data().lastName;
-          var uid = userFetched.id;
-          var profileImage = await firebase
-            .storage()
-            .ref(`profilePictures/${uid}.jpg`)
-            .getDownloadURL();
-          var portfolioFetched = await db
-            .collection("portofolios")
-            .doc(uid)
-            .get();
-          var role = "";
-          if (portfolioFetched.data() !== undefined) {
-            role = portfolioFetched.data().role;
+          if(userFetched.id !== this.userID){
+            var firstName = userFetched.data().firstName;
+            var lastName = userFetched.data().lastName;
+            var uid = userFetched.id;
+            var profileImage = await firebase
+              .storage()
+              .ref(`profilePictures/${uid}.jpg`)
+              .getDownloadURL();
+            var portfolioFetched = await db
+              .collection("portofolios")
+              .doc(uid)
+              .get();
+            var role = "";
+            if (portfolioFetched.data() !== undefined) {
+              role = portfolioFetched.data().role;
+            }
+            this.users.push({
+              firstName: firstName,
+              lastName: lastName,
+              role: role,
+              uid: uid,
+              image: profileImage,
+            });
           }
-          this.users.push({
-            firstName: firstName,
-            lastName: lastName,
-            role: role,
-            uid: uid,
-            image: profileImage,
-          });
         });
       });
   },
