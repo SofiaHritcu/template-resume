@@ -1,7 +1,7 @@
 <template>
   <v-row>
     <v-col cols="0" md="5" lg="3">
-      <navbar></navbar>
+      <navbar :key="$route.params.userID"></navbar>
     </v-col>
     <v-col cols="12" md="7" lg="9">
       <Home_introduction_section
@@ -93,6 +93,14 @@ export default {
 
   created() {
     this.getAllData();
+  },
+
+  watch: {
+    $route(to, from) {
+      this.userID = to.params.userID;
+      this.fetchUserData();
+      this.fetchPortofolioData();
+    },
   },
 
   methods: {
