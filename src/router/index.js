@@ -4,6 +4,7 @@ import Home from '../views/Home.vue'
 import Resume from '../views/Resume.vue'
 import Projects from '../views/Projects.vue'
 import Contact from '../views/Contact.vue'
+import Others from '../views/Others.vue'
 import EditAbout from '../views/EditAbout.vue'
 import EditPortfolio from '../views/EditPortfolio.vue'
 import EditResume from '../views/EditResume.vue'
@@ -13,6 +14,7 @@ import SignUp from '../views/SignUp.vue'
 import firebase from 'firebase'
 import "firebase/storage"
 import UserManagement from '../views/UserManagement.vue'
+
 
 
 Vue.use(VueRouter)
@@ -40,6 +42,12 @@ const routes = [
     path: '/contact/:userID',
     name: 'Contact',
     component: Contact,
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/others/:userID',
+    name: 'Others',
+    component: Others,
     meta: { requiresAuth: true }
   },
   {

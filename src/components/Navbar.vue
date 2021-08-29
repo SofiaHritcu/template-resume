@@ -202,6 +202,26 @@
             Contact
           </router-link>
         </div>
+        <div class="linkss d-flex">
+          <v-icon color="white">
+            mdi-account-group-outline
+          </v-icon>
+          <router-link
+            v-bind:to="{
+              name: 'Others',
+              params: { userID: userID },
+            }"
+            :class="[
+              onOthers ? 'activeClass' : '',
+              'section-link',
+              'text-heading-5',
+              'font-weight-light',
+              'my-2',
+            ]"
+          >
+            Others
+          </router-link>
+        </div>
       </div>
       <hr />
       <v-row
@@ -336,8 +356,7 @@ export default {
     },
     onAbout() {
       let routeName = this.$route.name === "Home";
-      console.log(this.$route.name);
-      return this.$route.name === "Home"
+      return this.$route.name === "Home";
     },
     onPortfolio() {
       let routeName = this.$route.name === "Projects";
@@ -345,12 +364,16 @@ export default {
     },
     onResume() {
       let routeName = this.$route.name === "Resume";
-      return this.$route.name === "Resume"
+      return this.$route.name === "Resume";
     },
     onContact() {
       let routeName = this.$route.name === "Contact";
-      return this.$route.name === "Contact"
+      return this.$route.name === "Contact";
     },
+    onOthers() {
+      let routeName = this.$route.name === "Others";
+      return this.$route.name === "Others";
+    }
     
   },
   methods: {
