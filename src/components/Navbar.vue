@@ -224,6 +224,12 @@ export default {
     },
     logOut() {
       console.log("logging out");
+      firebase.auth().signOut().then(() => {
+        isLoggedIn();
+      }).catch((error) => {
+        // An error happened.
+      });
+
     },
     fetchCurrentUserData() {
       db.collection('users').doc(this.userID).get()
