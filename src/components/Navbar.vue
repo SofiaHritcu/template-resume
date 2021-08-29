@@ -88,8 +88,25 @@
             />
           </svg>
           <router-link
+            v-if="!visiting"
             v-bind:to="{
               name: 'Home',
+              params: { userID: userID },
+            }"
+            :class="[
+              onAbout ? 'activeClass' : '',
+              'section-link',
+              'text-heading-5',
+              'font-weight-light',
+              'my-2',
+            ]"
+          >
+            About Me
+          </router-link>
+          <router-link
+            v-else
+            v-bind:to="{
+              name: 'ProfileHome',
               params: { userID: userID },
             }"
             :class="[
@@ -121,8 +138,25 @@
             />
           </svg>
           <router-link
+            v-if="!visiting"
             v-bind:to="{
               name: 'Projects',
+              params: { userID: userID },
+            }"
+            :class="[
+              onPortfolio ? 'activeClass' : '',
+              'section-link',
+              'text-heading-5',
+              'font-weight-light',
+              'my-2',
+            ]"
+          >
+            Projects
+          </router-link>
+          <router-link
+            v-else
+            v-bind:to="{
+              name: 'ProfileProjects',
               params: { userID: userID },
             }"
             :class="[
@@ -154,8 +188,25 @@
             />
           </svg>
           <router-link
+            v-if="!visiting"
             v-bind:to="{
               name: 'Resume',
+              params: { userID: userID },
+            }"
+            :class="[
+              onResume ? 'activeClass' : '',
+              'section-link',
+              'text-heading-5',
+              'font-weight-light',
+              'my-2',
+            ]"
+          >
+            Resume
+          </router-link>
+          <router-link
+            v-else
+            v-bind:to="{
+              name: 'ProfileResume',
               params: { userID: userID },
             }"
             :class="[
@@ -187,6 +238,7 @@
             />
           </svg>
           <router-link
+            v-if="!visiting"
             v-bind:to="{
               name: 'Contact',
               params: { userID: userID },
@@ -201,9 +253,28 @@
           >
             Contact
           </router-link>
+          <router-link
+            v-else
+            v-bind:to="{
+              name: 'ProfileContact',
+              params: { userID: userID },
+            }"
+            :class="[
+              onContact ? 'activeClass' : '',
+              'section-link',
+              'text-heading-5',
+              'font-weight-light',
+              'my-2',
+            ]"
+          >
+            Contact
+          </router-link>
         </div>
+
+        
+        
         <div class="linkss d-flex">
-          <v-icon color="white">
+          <v-icon color="white" :class="[visiting ? 'hiddenOnVisiting' : '']">
             mdi-account-group-outline
           </v-icon>
           <router-link
@@ -213,6 +284,7 @@
             }"
             :class="[
               onOthers ? 'activeClass' : '',
+              visiting ? 'hiddenOnVisiting' : '',
               'section-link',
               'text-heading-5',
               'font-weight-light',
@@ -223,7 +295,7 @@
           </router-link>
         </div>
       </div>
-      <hr />
+      <hr :class="[visiting ? 'hiddenOnVisiting' : '']" />
       <v-row
         class="sections"
         justify="center"
@@ -234,7 +306,10 @@
           <v-btn
             large
             color="#85a3e0"
-            :class="[onEditAbout ? 'activeButton' : '']"
+            :class="[
+              onEditAbout ? 'activeButton' : '',
+              visiting ? 'hiddenOnVisiting' : '',
+            ]"
             class="white--text classic-button"
             @click="editAbout"
           >
@@ -248,7 +323,10 @@
           <v-btn
             large
             color="#85a3e0"
-            :class="[onEditPortfolio ? 'activeButton' : '']"
+            :class="[
+              onEditPortfolio ? 'activeButton' : '',
+              visiting ? 'hiddenOnVisiting' : '',
+            ]"
             class="white--text classic-button"
             @click="editPortfolio"
           >
@@ -262,7 +340,10 @@
           <v-btn
             large
             color="#85a3e0"
-            :class="[onEditResume ? 'activeButton' : '']"
+            :class="[
+              onEditResume ? 'activeButton' : '',
+              visiting ? 'hiddenOnVisiting' : '',
+            ]"
             class="white--text classic-button"
             @click="editResume"
           >
@@ -272,11 +353,14 @@
             ADD RESUME
           </v-btn>
         </div>
-        <div class="my-3 ml-6 d-flex">
+        <div class="my-3 mr-15 d-flex">
           <v-btn
             large
             color="#85a3e0"
-            :class="[onEditProfile ? 'activeButton' : '']"
+            :class="[
+              onEditProfile ? 'activeButton' : '',
+              visiting ? 'hiddenOnVisiting' : '',
+            ]"
             class="white--text classic-button"
             @click="settings"
           >
@@ -286,10 +370,11 @@
             Settings
           </v-btn>
         </div>
-        <div class="my-3 ml-8 d-flex">
+        <div class="my-3 mr-15 d-flex">
           <v-btn
             large
-            color="#85a3e0"
+            color="red"
+            :class="[visiting ? 'hiddenOnVisiting' : '']"
             class="white--text classic-button"
             @click="logOut"
           >
@@ -300,6 +385,22 @@
           </v-btn>
         </div>
       </v-row>
+      <hr v-if="visiting">
+        <v-row align="center" justify="center">
+          <v-btn
+            v-if="visiting"
+            class="backToAccount"
+            fab
+            dark
+            color="#85a3e0"
+            @click="backToMyAccount"
+          >
+            <v-icon>
+              mdi-account-arrow-left-outline
+            </v-icon>
+          </v-btn>
+
+        </v-row>
     </div>
   </body>
 </template>
@@ -323,7 +424,7 @@ export default {
   data() {
     return {
       userID: "",
-      currentUserId: '',
+      currentUserId: "",
       firstName: "some",
       lastName: "dude",
       isLongName: "",
@@ -334,19 +435,22 @@ export default {
       linkedInLink: "",
       gitHubLink: "",
       instagramLink: "",
-      
     };
   },
   computed: {
     isLoggedIn() {
       firebase.auth().onAuthStateChanged((user) => {
         if (!user) {
+          if (this.visiting) {
+            this.userID = this.$route.params.userID;
+            this.fetchCurrentUserData();
+          }
           return false;
         } else {
-          if(this.$route.params.userID) {
+          if (this.$route.params.userID) {
+            console.log(this.$route.params);
             this.userID = this.$route.params.userID;
-          }
-          else {
+          } else {
             this.userID = user.uid;
           }
           this.fetchCurrentUserData();
@@ -360,7 +464,7 @@ export default {
     },
     onPortfolio() {
       let routeName = this.$route.name === "Projects";
-      return this.$route.name === "Projects"
+      return this.$route.name === "Projects";
     },
     onResume() {
       let routeName = this.$route.name === "Resume";
@@ -373,8 +477,17 @@ export default {
     onOthers() {
       let routeName = this.$route.name === "Others";
       return this.$route.name === "Others";
-    }
-    
+    },
+    visiting() {
+      let routeName = this.$route.name + "";
+      console.log(routeName);
+      return (
+        this.$route.name === "ProfileHome" ||
+        this.$route.name === "ProfileResume" ||
+        this.$route.name === "ProfileContact" ||
+        this.$route.name === "ProfileProjects"
+      );
+    },
   },
   methods: {
     longName() {
@@ -407,6 +520,15 @@ export default {
         .catch((error) => {
           // An error happened.
         });
+    },
+    backToMyAccount() {
+      firebase.auth().onAuthStateChanged((user) => {
+        if (!user) {
+          this.$router.push({name: "Login"});
+        } else {
+          this.$router.push({name: 'Home', params: { userID: user.uid }});
+        }
+      });
     },
     fetchCurrentUserData() {
       console.log(this.userID);
@@ -505,6 +627,10 @@ hr {
   font-weight: 400 !important;
 }
 
+.hiddenOnVisiting {
+  display: none;
+}
+
 .activeButton,
 .activeButton:hover {
   color: #3366cc !important;
@@ -518,6 +644,10 @@ hr {
   float: right;
   display: none;
   margin-right: 25px;
+}
+
+.backToAccount {
+  margin-bottom: 5%;
 }
 
 @media only screen and (max-width: 768px) {

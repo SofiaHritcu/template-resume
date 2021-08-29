@@ -31,9 +31,6 @@ export default {
   created() {
     this.userID = this.$route.params.userID;
     firebase.auth().onAuthStateChanged((user) => {
-      if (!user) {
-        return false;
-      } else {
         console.log(this.userID);
         firebase
           .storage()
@@ -42,7 +39,7 @@ export default {
           .then((url) => {
             this.pdfFile = url;
           });
-      }
+      
     });
     // fetch pdf resume file from firebase storage
     

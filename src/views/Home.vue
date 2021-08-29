@@ -29,7 +29,7 @@
           <div class="row pt-5">
             <home-particular-skills
               v-for="particularSkill in particularSkills"
-              :key="particularSkill"
+              :key="particularSkill.name"
               :skill_title="particularSkill.name"
               :skill_details="particularSkill.description"
             ></home-particular-skills>
@@ -47,7 +47,7 @@
         <div class="row pt-5">
           <home-learning
             v-for="currentlyLearning in currentlyLearnings"
-            :key="currentlyLearning"
+            :key="currentlyLearning.name"
             :learning_name="currentlyLearning.name"
           ></home-learning>
         </div>

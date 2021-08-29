@@ -32,7 +32,7 @@ export default {
   methods: {
     seeUser(userID) {
             console.log('visit user '+userID);
-            this.$router.push({ path: `/profile/${this.userID}` }) 
+            this.$router.push({ path: `/profile/home/${this.userID}` }) 
         }
   },
 

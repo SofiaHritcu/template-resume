@@ -27,6 +27,26 @@ const routes = [
     meta: { requiresAuth: true }
   },
   {
+    path: '/profile/home/:userID',
+    name: 'ProfileHome',
+    component: Home,
+  },
+  {
+    path: '/profile/resume/:userID',
+    name: 'ProfileResume',
+    component: Resume,
+  },
+  {
+    path: '/profile/contact/:userID',
+    name: 'ProfileContact',
+    component: Contact,
+  },
+  {
+    path: '/profile/projects/:userID',
+    name: 'ProfileProjects',
+    component: Projects,
+  },
+  {
     path: '/resume/:userID',
     name: 'Resume',
     component: Resume,

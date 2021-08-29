@@ -49,7 +49,6 @@ export default {
         return false;
       } else {
         this.userID = user.uid;
-        this.fetchCurrentUserData();
         return true;
       }
     });
