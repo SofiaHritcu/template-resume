@@ -105,6 +105,11 @@ const routes = [
     component: Login
   },
   {
+    path: '*',
+    name: 'Login',
+    component: Login
+  },
+  {
     path: '/usermanagement',
     name: 'UserManagement',
     component: UserManagement
