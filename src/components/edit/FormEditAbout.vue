@@ -124,8 +124,8 @@
             <div>
                 <v-card outlined v-for="particularSkill in particularSkills" :key="particularSkill.name" class="mb-5">
                     <v-row align="center" justify="center">
-                      <v-col cols="5" class="ml-10">
-                      <v-img left>
+                      <v-col cols="5">
+                      <v-img>
                         <v-img
                         :src="require('@/assets/' + 'particularSkill.png')"
                         width="100" height="200"
@@ -179,8 +179,8 @@
         <v-col cols="6">
           <v-card outlined v-for="learning in learnings" :key="learning.name" class="mb-5">
                     <v-row align="center" justify="center">
-                      <v-col cols="5" class="ml-10">
-                      <v-img left
+                      <v-col cols="5">
+                      <v-img center
                         :src="require('@/assets/' + 'learning.png')"
                         width="150" height="150"
                       ></v-img>
