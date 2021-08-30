@@ -9,7 +9,6 @@
                 <h2>{{ firstName }}  {{ lastName }}</h2>
                 <h3 class="pt-3">{{job_name}}</h3>
                 <p class="pt-3">{{job_description}} </p>
-                <a href="#" class="classic-button">View Resume </a>
             </div>
             <!-- photo column -->
             <div class="image-section col-xl-5">
