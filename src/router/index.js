@@ -13,6 +13,7 @@ import Login from '../views/Login.vue'
 import SignUp from '../views/SignUp.vue'
 import firebase from 'firebase'
 import "firebase/storage"
+import ForgotPassword from '../views/ForgotPassword.vue'
 import UserManagement from '../views/UserManagement.vue'
 
 
@@ -108,6 +109,11 @@ const routes = [
     path: '*',
     name: 'Login',
     component: Login
+  },
+  {
+    path: '/forgotpassword',
+    name: ForgotPassword,
+    component: ForgotPassword
   },
   {
     path: '/usermanagement',
